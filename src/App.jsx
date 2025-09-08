@@ -6,8 +6,8 @@ import TodoList from "./components/TodoList";
 function App() {
   return (
     <VStack p={4} minH="100vh">
-      <Heading mt={15} p={5} fontWeight="extrabold" size="2xl" color="blue.400">
-        Todo List
+      <Heading mt={15} p={5} fontWeight="extrabold" size="3xl" color="blue.400">
+        Todo App
       </Heading>
       <AddTodo />
       <TodoList />

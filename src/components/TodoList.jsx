@@ -8,13 +8,13 @@ import {
 } from "@chakra-ui/react";
 import ClearTodoList from "./ClearTodoList";
 import DeleteTodo from "./DeleteTodo";
-import img from "../assets/EmptyTodoList.jpg";
+import img from "../assets/todo.jpg";
 
 export default function TodoList() {
   return (
     <>
       <Flex justify="center">
-        <Image src={img} maxW="35%" />
+        <Image src={img} maxW="30%" />
       </Flex>
       <VStack
         separator={<StackSeparator />}

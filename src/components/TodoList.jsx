@@ -45,6 +45,7 @@ export default function TodoList() {
           <DeleteTodo />
         </HStack>
       </VStack>
+      <ClearTodoList />
     </>
   );
 }

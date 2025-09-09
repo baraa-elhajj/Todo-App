@@ -16,13 +16,12 @@ export default function TodoList() {
   const [todoList, setTodoList] = useState([]);
 
   const fetchTodoList = async () => {
-    let { data, error } = await supabase.from("todo").select("*");
+    const { data, error } = await supabase.from("todo").select("*");
 
     if (error) {
       console.log("Error fetching todo list: ", error);
     } else {
       setTodoList(data);
-      console.log(data);
     }
   };
 
@@ -36,7 +35,7 @@ export default function TodoList() {
         <Image src={img} maxW="30%" />
       </Flex>
 
-      {todoList.length !== 0 ? (
+      {todoList.length !== 0 && (
         <>
           <VStack
             separator={<StackSeparator />}
@@ -45,22 +44,20 @@ export default function TodoList() {
             p="5"
             borderRadius="lg"
             w="100%"
-            maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "30vw" }}
+            maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "30vw" }}
             alignItems="stretch"
           >
             {todoList.map((todo) => (
-              <HStack>
+              <HStack key={todo.id}>
                 <Text w="100%" p="8px" borderRadius="lg" color="blue.400">
                   {todo.text}
                 </Text>
-                <DeleteTodo />
+                <DeleteTodo id={todo.id} />
               </HStack>
             ))}
           </VStack>
           <ClearTodoList />
         </>
-      ) : (
-        {}
       )}
     </>
   );

@@ -9,7 +9,11 @@ export default function DeleteTodo({ id }) {
 
   const handleDelete = async () => {
     setLoading(true);
-    const { _, error } = await supabase.from("todo").delete().eq("id", id);
+    const { _, error } = await supabase
+      .from("todo")
+      .delete()
+      .eq("id", id)
+      .select("*");
     setLoading(false);
 
     toaster.create({

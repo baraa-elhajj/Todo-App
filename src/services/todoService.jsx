@@ -1,7 +1,7 @@
 import { toaster } from "@/components/ui/toaster";
 import supabase from "@/supabase-client";
 
-export const fetchTodoList = async () => {
+export const fetchTodoListDB = async () => {
   const { data, error } = await supabase.from("todo").select("*");
 
   if (error) {
@@ -15,7 +15,7 @@ export const fetchTodoList = async () => {
   }
 };
 
-export const addTodo = async (text) => {
+export const addTodoDB = async (text) => {
   const { data, error } = await supabase
     .from("todos")
     .insert([{ text }])
@@ -37,7 +37,7 @@ export const addTodo = async (text) => {
  * @param {*} id the id of the todo to be deleted
  * @returns new todo list after deleting the todo with the selected id
  */
-export const deleteTodo = async (id) => {
+export const deleteTodoDB = async (id) => {
   const { data, error } = await supabase
     .from("todos")
     .delete()

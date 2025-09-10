@@ -1,4 +1,3 @@
-// import supabase from "@/supabase-client";
 import { IconButton, Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiTrash2 } from "react-icons/fi";

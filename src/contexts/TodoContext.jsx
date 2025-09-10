@@ -1,17 +1,32 @@
-import { createContext, useContext, useState } from "react";
+import {
+  addTodoDB,
+  deleteTodoDB,
+  fetchTodoListDB,
+} from "@/services/todoService";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
 
-  const addTodo = (text) => {
+  useEffect(() => {
+    async function loadTodos() {
+      const data = await fetchTodoListDB();
+      setTodoList(data);
+    }
+
+    loadTodos();
+  }, []);
+
+  const addTodo = async (text) => {
     if (!text.trim()) return;
-    setTodoList([...todoList, { text }]);
+    const newTodo = await addTodoDB(text);
+    setTodoList([...todoList, newTodo]);
   };
 
-  const deleteTodo = (id) => {
-    console.log("TodoContext: Deleting todo");
+  const deleteTodo = async (id) => {
+    await deleteTodoDB(id);
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
   };
 

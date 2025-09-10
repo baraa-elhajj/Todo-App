@@ -9,8 +9,6 @@ import {
 import ClearTodoList from "./ClearTodoList";
 import DeleteTodo from "./DeleteTodo";
 import img from "../assets/todo.jpg";
-// import { useEffect, useState } from "react";
-// import supabase from "@/supabase-client";
 import { useTodo } from "@/contexts/TodoContext";
 
 export default function TodoList() {

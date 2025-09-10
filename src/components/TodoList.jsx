@@ -9,25 +9,25 @@ import {
 import ClearTodoList from "./ClearTodoList";
 import DeleteTodo from "./DeleteTodo";
 import img from "../assets/todo.jpg";
-import { useEffect, useState } from "react";
-import supabase from "@/supabase-client";
+// import { useEffect, useState } from "react";
+// import supabase from "@/supabase-client";
 
 export default function TodoList() {
   const [todoList, setTodoList] = useState([]);
 
-  const fetchTodoList = async () => {
-    const { data, error } = await supabase.from("todo").select("*");
+  //   const fetchTodoList = async () => {
+  //     const { data, error } = await supabase.from("todo").select("*");
 
-    if (error) {
-      console.log("Error fetching todo list: ", error);
-    } else {
-      setTodoList(data);
-    }
-  };
+  //     if (error) {
+  //       console.log("Error fetching todo list: ", error);
+  //     } else {
+  //       setTodoList(data);
+  //     }
+  //   };
 
-  useEffect(() => {
-    fetchTodoList();
-  }, []);
+  //   useEffect(() => {
+  //     fetchTodoList();
+  //   }, []);
 
   return (
     <>

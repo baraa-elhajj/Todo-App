@@ -6,9 +6,8 @@ export function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
 
   const addTodo = (text) => {
-    console.log("TodoContext: Adding todo");
     if (!text.trim()) return;
-    setTodoList((prev) => [...prev, text]);
+    setTodoList([...todoList, { text }]);
   };
 
   const deleteTodo = (id) => {

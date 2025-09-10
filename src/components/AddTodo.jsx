@@ -7,7 +7,6 @@ export default function AddTodo() {
   const { addTodo } = useTodo();
 
   const handleOnClick = () => {
-    console.log("AddTodo: Adding todo");
     addTodo(input);
     setInput("");
   };

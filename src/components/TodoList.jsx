@@ -15,7 +15,6 @@ import { useTodo } from "@/contexts/TodoContext";
 
 export default function TodoList() {
   const { todoList } = useTodo();
-  console.log("TodoList: Printing todos");
 
   //   const fetchTodoList = async () => {
   //     const { data, error } = await supabase.from("todo").select("*");

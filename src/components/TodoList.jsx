@@ -11,9 +11,11 @@ import DeleteTodo from "./DeleteTodo";
 import img from "../assets/todo.jpg";
 // import { useEffect, useState } from "react";
 // import supabase from "@/supabase-client";
+import { useTodo } from "@/contexts/TodoContext";
 
 export default function TodoList() {
-  const [todoList, setTodoList] = useState([]);
+  const { todoList } = useTodo();
+  console.log("TodoList: Printing todos");
 
   //   const fetchTodoList = async () => {
   //     const { data, error } = await supabase.from("todo").select("*");

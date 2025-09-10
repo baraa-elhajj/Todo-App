@@ -17,9 +17,10 @@ export default function AddTodo() {
       <Input
         h="100%"
         variant="outline"
-        placeholder="What are you up for today?"
         colorPalette="blue"
         w="xs"
+        placeholder="What are you up for today?"
+        value={input}
         onChange={(e) => setInput(e.target.value)}
       />
       <Button

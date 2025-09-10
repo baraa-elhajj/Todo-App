@@ -22,6 +22,7 @@ export default function AddTodo() {
         placeholder="What are you up for today?"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleOnClick()}
       />
       <Button
         size="sm"

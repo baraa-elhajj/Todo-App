@@ -16,16 +16,6 @@ import { useTodo } from "@/contexts/TodoContext";
 export default function TodoList() {
   const { todoList } = useTodo();
 
-  //   const fetchTodoList = async () => {
-  //     const { data, error } = await supabase.from("todo").select("*");
-
-  //     if (error) {
-  //       console.log("Error fetching todo list: ", error);
-  //     } else {
-  //       setTodoList(data);
-  //     }
-  //   };
-
   //   useEffect(() => {
   //     fetchTodoList();
   //   }, []);

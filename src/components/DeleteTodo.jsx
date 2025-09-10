@@ -12,12 +12,7 @@ export default function DeleteTodo({ id }) {
   const handleDelete = async () => {
     console.log("DeleteTodo: Deleting todo");
     setLoading(true);
-    console.log("DeleteTodo: loading is true");
-    // const { _, error } = await supabase
-    //   .from("todo")
-    //   .delete()
-    //   .eq("id", id)
-    //   .select("*");
+    console.log("loading is now TRUE");
 
     setTimeout(() => {
       deleteTodo(id);
@@ -26,7 +21,7 @@ export default function DeleteTodo({ id }) {
         type: "success",
       });
       setLoading(false);
-      console.log("DeleteTodo: loading is false");
+      console.log("loading is now FALSE");
     }, 3000);
   };
 

@@ -37,3 +37,17 @@ export const clearTodoListDB = async () => {
     throw error;
   }
 };
+
+export const updateTodoDB = async (id, newText) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .update({ text: newText })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    throw error;
+  }
+  return data;
+};

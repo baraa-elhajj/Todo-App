@@ -4,11 +4,16 @@ import { useState } from "react";
 
 export default function AddTodo() {
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
   const { addTodo } = useTodo();
 
   const handleOnClick = () => {
-    addTodo(input);
-    setInput("");
+    setLoading(true);
+    setTimeout(() => {
+      addTodo(input);
+      setLoading(false);
+      setInput("");
+    }, 1000);
   };
 
   return (
@@ -22,6 +27,7 @@ export default function AddTodo() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleOnClick()}
+        disabled={loading}
       />
       <Button
         size="sm"
@@ -31,6 +37,8 @@ export default function AddTodo() {
         h="100%"
         type="submit"
         onClick={handleOnClick}
+        loading={loading}
+        loadingText="Adding"
       >
         Add
       </Button>

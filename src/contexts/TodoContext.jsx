@@ -32,7 +32,7 @@ export function TodoProvider({ children }) {
     }
     try {
       const newTodo = await addTodoDB(text);
-      setTodoList([...todoList, newTodo]);
+      setTodoList((prev) => [...prev, newTodo]);
     } catch (error) {
       setError("Failed to add todo. Try again.");
       console.error(error);

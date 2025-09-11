@@ -1,6 +1,7 @@
 import { toaster } from "@/components/ui/toaster";
 import {
   addTodoDB,
+  clearTodoListDB,
   deleteTodoDB,
   fetchTodoListDB,
 } from "@/services/todoService";
@@ -60,9 +61,24 @@ export function TodoProvider({ children }) {
     }
   };
 
+  const clearTodoList = async () => {
+    try {
+      await clearTodoListDB();
+      setTodoList([]);
+      toaster.create({
+        title: "Todo list cleared",
+        type: "success",
+        duration: 2000,
+      });
+    } catch (error) {
+      setError("Failed to clear todo list. Try again.");
+      console.error(error);
+    }
+  };
+
   return (
     <TodoContext.Provider
-      value={{ todoList, addTodo, deleteTodo, error, setError }}
+      value={{ todoList, addTodo, deleteTodo, clearTodoList, error, setError }}
     >
       {children}
     </TodoContext.Provider>

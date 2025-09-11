@@ -23,20 +23,17 @@ export const addTodoDB = async (text) => {
   return data;
 };
 
-/**
- *
- * @param {*} id the id of the todo to be deleted
- * @returns new todo list after deleting the todo with the selected id
- */
 export const deleteTodoDB = async (id) => {
-  const { data, error } = await supabase
-    .from("todo")
-    .delete()
-    .eq("id", id)
-    .select("*");
+  const { error } = await supabase.from("todo").delete().eq("id", id);
 
   if (error) {
     throw error;
   }
-  return data;
+};
+
+export const clearTodoListDB = async () => {
+  const { error } = await supabase.from("todo").delete().neq("id", 0);
+  if (error) {
+    throw error;
+  }
 };

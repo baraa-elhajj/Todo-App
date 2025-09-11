@@ -1,3 +1,4 @@
+import { toaster } from "@/components/ui/toaster";
 import {
   addTodoDB,
   deleteTodoDB,
@@ -33,6 +34,11 @@ export function TodoProvider({ children }) {
     try {
       const newTodo = await addTodoDB(text);
       setTodoList((prev) => [...prev, newTodo]);
+      toaster.create({
+        title: "Todo added",
+        type: "success",
+        duration: 2000,
+      });
     } catch (error) {
       setError("Failed to add todo. Try again.");
       console.error(error);
@@ -43,6 +49,11 @@ export function TodoProvider({ children }) {
     try {
       await deleteTodoDB(id);
       setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+      toaster.create({
+        title: "Todo deleted",
+        type: "success",
+        duration: 2000,
+      });
     } catch (error) {
       setError("Failed to delete todo. Try again.");
       console.error(error);

@@ -14,6 +14,7 @@ import img from "../assets/todo.jpg";
 import { useTodo } from "@/contexts/TodoContext";
 import { useEffect, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import EditTodo from "./EditTodo";
 
 export default function TodoList() {
   const { todoList } = useTodo();
@@ -73,6 +74,7 @@ export default function TodoList() {
                   {todo.text}
                 </Text>
                 <DeleteTodo id={todo.id} />
+                <EditTodo todo={todo} />
               </HStack>
             ))}
           </VStack>

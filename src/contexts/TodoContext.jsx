@@ -4,6 +4,7 @@ import {
   clearTodoListDB,
   deleteTodoDB,
   fetchTodoListDB,
+  updateTodoDB,
 } from "@/services/todoService";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -76,9 +77,34 @@ export function TodoProvider({ children }) {
     }
   };
 
+  const editTodo = async (id, newText) => {
+    try {
+      const updatedTodo = await updateTodoDB(id, newText);
+      setTodoList(
+        todoList.map((todo) => (todo.id === id ? updatedTodo : todo))
+      );
+      toaster.create({
+        title: "Todo updated",
+        type: "success",
+        duration: 1000,
+      });
+    } catch (error) {
+      setError("Failed to update todo. Try again.");
+      console.error(error);
+    }
+  };
+
   return (
     <TodoContext.Provider
-      value={{ todoList, addTodo, deleteTodo, clearTodoList, error, setError }}
+      value={{
+        todoList,
+        addTodo,
+        deleteTodo,
+        clearTodoList,
+        editTodo,
+        error,
+        setError,
+      }}
     >
       {children}
     </TodoContext.Provider>

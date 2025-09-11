@@ -1,18 +1,12 @@
-import { toaster } from "@/components/ui/toaster";
 import supabase from "@/supabase-client";
 
 export const fetchTodoListDB = async () => {
   const { data, error } = await supabase.from("todo").select("*");
 
   if (error) {
-    console.log("Error fetching todo list: ", error);
-    toaster.create({
-      title: "Failed to fetch todo list.",
-      type: "error",
-    });
-  } else {
-    return data;
+    throw error;
   }
+  return data;
 };
 
 export const addTodoDB = async (text) => {
@@ -22,14 +16,9 @@ export const addTodoDB = async (text) => {
     .single();
 
   if (error) {
-    console.log("Error adding todo: ", error);
-    toaster.create({
-      title: "Failed to add todo.",
-      type: "error",
-    });
-  } else {
-    return data;
+    throw error;
   }
+  return data;
 };
 
 /**
@@ -45,12 +34,7 @@ export const deleteTodoDB = async (id) => {
     .select("*");
 
   if (error) {
-    console.log("Error deleting todo: ", error);
-    toaster.create({
-      title: "Failed to delete todo.",
-      type: "error",
-    });
-  } else {
-    return data;
+    throw error;
   }
+  return data;
 };

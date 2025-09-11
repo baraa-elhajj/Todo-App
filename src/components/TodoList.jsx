@@ -14,10 +14,6 @@ import { useTodo } from "@/contexts/TodoContext";
 export default function TodoList() {
   const { todoList } = useTodo();
 
-  //   useEffect(() => {
-  //     fetchTodoList();
-  //   }, []);
-
   return (
     <>
       <Flex justify="center">

@@ -9,29 +9,50 @@ const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function loadTodos() {
-      const data = await fetchTodoListDB();
-      setTodoList(data);
+      try {
+        const data = await fetchTodoListDB();
+        setTodoList(data);
+      } catch (error) {
+        setError("Failed to fetch todo list. Try refreshing the page.");
+        console.error(error);
+      }
     }
 
     loadTodos();
   }, []);
 
   const addTodo = async (text) => {
-    if (!text.trim()) return;
-    const newTodo = await addTodoDB(text);
-    setTodoList([...todoList, newTodo]);
+    if (!text.trim()) {
+      // Add a toaster
+      return;
+    }
+    try {
+      const newTodo = await addTodoDB(text);
+      setTodoList([...todoList, newTodo]);
+    } catch (error) {
+      setError("Failed to add todo. Try again.");
+      console.error(error);
+    }
   };
 
   const deleteTodo = async (id) => {
-    await deleteTodoDB(id);
-    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+    try {
+      await deleteTodoDB(id);
+      setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+    } catch (error) {
+      setError("Failed to delete todo. Try again.");
+      console.error(error);
+    }
   };
 
   return (
-    <TodoContext.Provider value={{ todoList, addTodo, deleteTodo }}>
+    <TodoContext.Provider
+      value={{ todoList, addTodo, deleteTodo, error, setError }}
+    >
       {children}
     </TodoContext.Provider>
   );

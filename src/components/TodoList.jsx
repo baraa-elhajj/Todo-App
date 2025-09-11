@@ -3,7 +3,6 @@ import {
   Heading,
   HStack,
   Image,
-  Skeleton,
   Spinner,
   StackSeparator,
   Text,
@@ -56,7 +55,7 @@ export default function TodoList() {
         <Image src={img} maxW="30%" />
       </Flex>
 
-      {todoList.length !== 0 && (
+      {todoList.length !== 0 ? (
         <>
           <VStack
             separator={<StackSeparator />}
@@ -79,6 +78,16 @@ export default function TodoList() {
           </VStack>
           <ClearTodoList />
         </>
+      ) : (
+        <Heading
+          mt={15}
+          p={5}
+          fontWeight="extrabold"
+          size="lg"
+          color="blue.400"
+        >
+          All done! Nothing todo for now ...
+        </Heading>
       )}
     </>
   );

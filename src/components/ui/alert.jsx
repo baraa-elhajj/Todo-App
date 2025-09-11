@@ -1,8 +1,8 @@
-import { Alert as ChakraAlert } from '@chakra-ui/react'
-import * as React from 'react'
+import { Alert as ChakraAlert } from "@chakra-ui/react";
+import * as React from "react";
 
 export const Alert = React.forwardRef(function Alert(props, ref) {
-  const { title, children, icon, startElement, endElement, ...rest } = props
+  const { title, children, icon, startElement, endElement, ...rest } = props;
   return (
     <ChakraAlert.Root ref={ref} {...rest}>
       {startElement || <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>}
@@ -12,9 +12,9 @@ export const Alert = React.forwardRef(function Alert(props, ref) {
           <ChakraAlert.Description>{children}</ChakraAlert.Description>
         </ChakraAlert.Content>
       ) : (
-        <ChakraAlert.Title flex='1'>{title}</ChakraAlert.Title>
+        <ChakraAlert.Title flex="1">{title}</ChakraAlert.Title>
       )}
       {endElement}
     </ChakraAlert.Root>
-  )
-})
+  );
+});

@@ -11,7 +11,7 @@ export const fetchTodoListDB = async () => {
 
 export const addTodoDB = async (text) => {
   const { data, error } = await supabase
-    .from("todos")
+    .from("todo")
     .insert([{ text }])
     .single();
 
@@ -28,7 +28,7 @@ export const addTodoDB = async (text) => {
  */
 export const deleteTodoDB = async (id) => {
   const { data, error } = await supabase
-    .from("todos")
+    .from("todo")
     .delete()
     .eq("id", id)
     .select("*");

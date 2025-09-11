@@ -13,11 +13,13 @@ export const addTodoDB = async (text) => {
   const { data, error } = await supabase
     .from("todo")
     .insert([{ text }])
-    .single();
+    .single()
+    .select();
 
   if (error) {
     throw error;
   }
+
   return data;
 };
 

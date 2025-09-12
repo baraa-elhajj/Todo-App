@@ -88,6 +88,8 @@ npm run dev
 
 **Note**: Make sure you have [Node.js](https://nodejs.org/) and [Vite](https://vitejs.dev/) installed.
 
+---
+
 ## Contributing
 
 This is a personal project, but feel free to fork it or suggest improvements if you find something cool!

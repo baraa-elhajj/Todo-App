@@ -59,6 +59,8 @@ export default function EditTodo({ todo }) {
               <VStack spacing="3" align="stretch">
                 <Input
                   placeholder="What's on your mind?"
+                  colorPalette="blue"
+                  variant="outline"
                   value={newTodoText}
                   onChange={(e) => setNewTodoText(e.target.value)}
                   mb="2"

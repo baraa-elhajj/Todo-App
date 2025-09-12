@@ -3,12 +3,9 @@ import {
   Button,
   CloseButton,
   Dialog,
-  HStack,
   IconButton,
   Input,
   Portal,
-  Spinner,
-  Text,
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -37,32 +34,6 @@ export default function EditTodo({ todo }) {
   };
 
   return (
-    //   <HStack>
-    //     <Input
-    //       value={newTodoText}
-    //       onChange={(e) => setnewTodoText(e.target.value)}
-    //       autoFocus
-    //     />
-    //     <IconButton
-    //       aria-label="Save"
-    //       rounded="full"
-    //       bgColor="blue.400"
-    //       onClick={handleSave}
-    //     >
-    //       {loading ? <Spinner size="sm" /> : <FiCheck />}
-    //     </IconButton>
-    //     <IconButton
-    //       aria-label="Cancel"
-    //       rounded="full"
-    //       bgColor="blue.400"
-    //       onClick={() => {
-    //         setIsEditing(false);
-    //         setnewTodoText(todo.text);
-    //       }}
-    //     >
-    //       <FiX />
-    //     </IconButton>
-    //   </HStack>
     <Dialog.Root open={editIndex === todo.id}>
       <Dialog.Trigger asChild>
         <IconButton
@@ -120,18 +91,4 @@ export default function EditTodo({ todo }) {
       </Portal>
     </Dialog.Root>
   );
-
-  //   return (
-  //     <HStack>
-  //       <IconButton
-  //         aria-label="Edit"
-  //         rounded="full"
-  //         bgColor="blue.400"
-  //         onClick={() => setIsEditing(true)}
-  //       >
-  //         <FiEdit2 />
-  //       </IconButton>
-  //     </HStack>
-
-  //   );
 }

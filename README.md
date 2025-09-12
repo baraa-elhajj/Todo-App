@@ -11,7 +11,7 @@ This project demonstrates clean state management, database integration, and a mo
 - Clear all todos in one click
 - Persistent storage with [Supabase](https://supabase.com)
 - Global state management using React Context
-- Beautiful UI with [Chakra UI](https://chakra-ui.com)
+- Cool UI with [Chakra UI](https://chakra-ui.com)
 - Loading indicators for a smooth UX
 - Organized project structure with services and contexts
 
@@ -26,7 +26,7 @@ This project demonstrates clean state management, database integration, and a mo
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 ├── assets/
@@ -58,3 +58,42 @@ This project demonstrates clean state management, database integration, and a mo
 - **supabaseClient.js** → Supabase client configuration
 
 ---
+
+## Installation & Setup
+
+1. **Clone the repository**
+
+```bash
+https://github.com/baraa-elhajj/Todo-App.git
+cd todo-app
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **configure Supabase**
+
+   - Create a Supabase project.
+   - Add the table `todo` with: `id`(bigint), `text`(varchar), `created_at`(timestamp)
+   - Copy your API URL and anon/public key into `.env` file.
+
+4. **Run the app**
+
+```bash
+npm run dev
+```
+
+**Note**: Make sure you have [Node.js](https://nodejs.org/) and [Vite](https://vitejs.dev/) installed.
+
+## Contributing
+
+This is a personal project, but feel free to fork it or suggest improvements if you find something cool!
+
+---
+
+## License
+
+MIT License. You are free to use or adapt this project for learning purposes.

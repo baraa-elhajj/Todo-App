@@ -1,4 +1,5 @@
 import {
+  CheckboxCard,
   Flex,
   Heading,
   HStack,
@@ -70,11 +71,23 @@ export default function TodoList() {
           >
             {todoList.map((todo) => (
               <HStack key={todo.id}>
-                <Text w="100%" p="8px" borderRadius="lg" color="blue.400">
-                  {todo.text}
-                </Text>
-                <DeleteTodo id={todo.id} />
-                <EditTodo todo={todo} />
+                <CheckboxCard.Root
+                  key={todo.id}
+                  variant="surface"
+                  colorPalette="blue"
+                  borderColor="blue.100"
+                >
+                  <CheckboxCard.HiddenInput />
+                  <CheckboxCard.Control>
+                    <CheckboxCard.Label>
+                      <Text w="100%" p="8px" borderRadius="lg" color="blue.400">
+                        {todo.text}
+                      </Text>
+                      <DeleteTodo id={todo.id} />
+                      <EditTodo todo={todo} />
+                    </CheckboxCard.Label>
+                  </CheckboxCard.Control>
+                </CheckboxCard.Root>
               </HStack>
             ))}
           </VStack>

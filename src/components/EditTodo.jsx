@@ -60,6 +60,7 @@ export default function EditTodo({ todo }) {
                 <Input
                   placeholder="What's on your mind?"
                   colorPalette="blue"
+                  borderColor="blue.100"
                   variant="outline"
                   value={newTodoText}
                   onChange={(e) => setNewTodoText(e.target.value)}

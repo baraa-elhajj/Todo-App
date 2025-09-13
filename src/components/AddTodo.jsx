@@ -22,6 +22,7 @@ export default function AddTodo() {
         h="100%"
         variant="outline"
         colorPalette="blue"
+        borderColor="blue.100"
         w="xs"
         placeholder="What are you up for today?"
         value={input}
@@ -32,7 +33,7 @@ export default function AddTodo() {
       <Button
         size="sm"
         color="white"
-        bgColor="blue.500"
+        bgColor="blue.400"
         px={10}
         h="100%"
         type="submit"

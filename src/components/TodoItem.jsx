@@ -8,14 +8,28 @@ export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();
   const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
 
-  const handleOnChange = async (checked) => {
-    setIsCompleted(checked);
-    completeTodo(todo.id, checked);
+  const handleOnClick = async () => {
+    setIsCompleted(!isCompleted);
+    completeTodo(todo.id, !isCompleted);
   };
 
   return (
-    <HStack key={todo.id}>
-      <CheckboxCard.Root
+    // TODO: Implement checkbox card functionality
+    <HStack
+      key={todo.id}
+      p="5"
+      border="sm"
+      borderRadius="lg"
+      borderColor="blue.200"
+      bgColor={todo.isCompleted ? "blue.100" : "white"}
+      onClick={handleOnClick}
+    >
+      <Text w="100%" p="8px" color="blue.400">
+        {todo.text}
+      </Text>
+      <DeleteTodo id={todo.id} />
+      <EditTodo todo={todo} />
+      {/* <CheckboxCard.Root
         key={todo.id}
         variant="surface"
         colorPalette="blue"
@@ -33,7 +47,7 @@ export default function TodoItem({ todo }) {
             <EditTodo todo={todo} />
           </CheckboxCard.Label>
         </CheckboxCard.Control>
-      </CheckboxCard.Root>
+      </CheckboxCard.Root> */}
     </HStack>
   );
 }

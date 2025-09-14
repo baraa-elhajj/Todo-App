@@ -7,7 +7,8 @@ export default function DeleteTodo({ id }) {
   const [loading, setLoading] = useState(false);
   const { deleteTodo } = useTodo();
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.stopPropagation();
     setLoading(true);
     setTimeout(() => {
       deleteTodo(id);

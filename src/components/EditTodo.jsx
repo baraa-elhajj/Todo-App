@@ -18,7 +18,8 @@ export default function EditTodo({ todo }) {
   const [newTodoText, setNewTodoText] = useState(todo.text);
   const [loading, setLoading] = useState(false);
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.stopPropagation();
     if (!newTodoText.trim()) {
       toaster.create({
         title: "Add something first!",
@@ -28,17 +29,21 @@ export default function EditTodo({ todo }) {
       return;
     }
 
+    if (newTodoText === todo.text) {
+      setEditIndex(null);
+      return;
+    }
+
     setLoading(true);
     setTimeout(() => {
-      if (newTodoText !== todo.text) {
-        editTodo(todo.id, newTodoText);
-      }
+      editTodo(todo.id, newTodoText);
       setEditIndex(null);
       setLoading(false);
     }, 1000);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
+    e.stopPropagation();
     setEditIndex(null);
     setNewTodoText(todo.text);
   };
@@ -49,7 +54,10 @@ export default function EditTodo({ todo }) {
         <IconButton
           rounded="full"
           bgColor="blue.400"
-          onClick={() => setEditIndex(todo.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setEditIndex(todo.id);
+          }}
         >
           <TbEdit />
         </IconButton>
@@ -62,7 +70,7 @@ export default function EditTodo({ todo }) {
             <Dialog.Header>
               <Dialog.Title color="blue.400">Edit Todo</Dialog.Title>
               <Dialog.CloseTrigger asChild>
-                <CloseButton size="sm" onClick={() => handleCancel()} />
+                <CloseButton size="sm" onClick={handleCancel} />
               </Dialog.CloseTrigger>
             </Dialog.Header>
             <Dialog.Body>
@@ -81,11 +89,7 @@ export default function EditTodo({ todo }) {
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
-                <Button
-                  color="white"
-                  bgColor="blue.400"
-                  onClick={() => handleCancel()}
-                >
+                <Button color="white" bgColor="blue.400" onClick={handleCancel}>
                   Cancel
                 </Button>
               </Dialog.ActionTrigger>

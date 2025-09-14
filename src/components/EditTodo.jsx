@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { TbEdit } from "react-icons/tb";
+import { toaster } from "./ui/toaster";
 
 export default function EditTodo({ todo }) {
   const { editTodo } = useTodo();
@@ -18,9 +19,18 @@ export default function EditTodo({ todo }) {
   const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
+    if (!newTodoText.trim()) {
+      toaster.create({
+        title: "Add something first!",
+        type: "warning",
+        duration: 2000,
+      });
+      return;
+    }
+
     setLoading(true);
     setTimeout(() => {
-      if (newTodoText.trim() && newTodoText !== todo.text) {
+      if (newTodoText !== todo.text) {
         editTodo(todo.id, newTodoText);
       }
       setEditIndex(null);

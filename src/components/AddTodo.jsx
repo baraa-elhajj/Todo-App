@@ -1,6 +1,7 @@
 import { useTodo } from "@/contexts/TodoContext";
 import { Button, HStack, Input } from "@chakra-ui/react";
 import { useState } from "react";
+import { toaster } from "./ui/toaster";
 
 export default function AddTodo() {
   const [input, setInput] = useState("");
@@ -8,6 +9,15 @@ export default function AddTodo() {
   const { addTodo } = useTodo();
 
   const handleOnClick = () => {
+    if (!input.trim()) {
+      toaster.create({
+        title: "Add something first!",
+        type: "warning",
+        duration: 2000,
+      });
+      return;
+    }
+
     setLoading(true);
     setTimeout(() => {
       addTodo(input);

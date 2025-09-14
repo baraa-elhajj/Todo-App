@@ -30,10 +30,6 @@ export function TodoProvider({ children }) {
   }, []);
 
   const addTodo = async (text) => {
-    if (!text.trim()) {
-      // Add a toaster
-      return;
-    }
     try {
       const newTodo = await addTodoDB(text);
       setTodoList((prev) => [...prev, newTodo]);

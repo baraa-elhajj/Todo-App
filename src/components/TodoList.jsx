@@ -50,7 +50,7 @@ export default function TodoList() {
   return (
     <>
       <Flex justify="center">
-        <Image src={img} maxW="30%" />
+        <Image src={img} maxW="25%" />
       </Flex>
 
       {todoList.length !== 0 ? (

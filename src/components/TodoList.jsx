@@ -62,7 +62,7 @@ export default function TodoList() {
             p="5"
             borderRadius="lg"
             w="100%"
-            maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "40vw" }}
+            maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "35vw" }}
             alignItems="stretch"
           >
             {todoList.map((todo) => (

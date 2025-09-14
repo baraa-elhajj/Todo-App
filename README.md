@@ -92,12 +92,6 @@ npm run dev
 
 ---
 
-## Contributing
+## Contribution
 
-This is a personal project, but feel free to fork it or suggest improvements if you find something cool!
-
----
-
-## License
-
-MIT License. You are free to use or adapt this project for learning purposes.
+Feel free to fork this project or suggest improvements if you find something cool!

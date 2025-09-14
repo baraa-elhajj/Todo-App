@@ -7,7 +7,7 @@ This project demonstrates clean state management, database integration, and a mo
 
 ## Features
 
-- Add, view, edit and delete todos
+- CRUD functions on todos + marking them as completed
 - Clear all todos in one click
 - Persistent storage with [Supabase](https://supabase.com)
 - Global state management using React Context
@@ -40,6 +40,8 @@ This project demonstrates clean state management, database integration, and a mo
 │   ├── ClearTodoList.jsx
 │   ├── DeleteTodo.jsx
 │   ├── EditTodo.jsx
+│   ├── ScrollToTopButton.jsx
+│   ├── TodoItem.jsx
 │   └── TodoList.jsx
 ├── contexts/
 │   └── TodoContext.jsx

@@ -19,7 +19,8 @@ export function TodoProvider({ children }) {
     async function loadTodos() {
       try {
         const data = await fetchTodoListDB();
-        setTodoList(data);
+        const sorted = data.sort((a, b) => a.id - b.id);
+        setTodoList(sorted);
       } catch (error) {
         setError("Failed to fetch todo list. Try refreshing the page.");
         console.error(error);

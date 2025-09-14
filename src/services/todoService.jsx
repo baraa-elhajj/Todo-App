@@ -51,3 +51,17 @@ export const updateTodoDB = async (id, newText) => {
   }
   return data;
 };
+
+export const completeTodoDB = async (id, isCompleted) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .update({ isCompleted: isCompleted })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    throw error;
+  }
+  return data;
+};

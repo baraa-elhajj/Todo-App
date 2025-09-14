@@ -34,7 +34,7 @@ export function TodoProvider({ children }) {
       const newTodo = await addTodoDB(text);
       setTodoList((prev) => [...prev, newTodo]);
       toaster.create({
-        title: "Todo added",
+        title: "Todo Added",
         type: "success",
         duration: 2000,
       });
@@ -49,7 +49,7 @@ export function TodoProvider({ children }) {
       await deleteTodoDB(id);
       setTodoList((prev) => prev.filter((todo) => todo.id !== id));
       toaster.create({
-        title: "Todo deleted",
+        title: "Todo Deleted",
         type: "success",
         duration: 2000,
       });
@@ -64,7 +64,7 @@ export function TodoProvider({ children }) {
       await clearTodoListDB();
       setTodoList([]);
       toaster.create({
-        title: "Todo list cleared",
+        title: "Todo List Cleared",
         type: "success",
         duration: 2000,
       });
@@ -81,9 +81,9 @@ export function TodoProvider({ children }) {
         todoList.map((todo) => (todo.id === id ? updatedTodo : todo))
       );
       toaster.create({
-        title: "Todo updated",
+        title: "Todo Updated",
         type: "success",
-        duration: 1000,
+        duration: 2000,
       });
     } catch (error) {
       setError("Failed to update todo. Try again.");

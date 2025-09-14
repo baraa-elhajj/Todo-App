@@ -1,21 +1,17 @@
 import {
-  CheckboxCard,
   Flex,
   Heading,
-  HStack,
   Image,
   Spinner,
   StackSeparator,
-  Text,
   VStack,
 } from "@chakra-ui/react";
 import ClearTodoList from "./ClearTodoList";
-import DeleteTodo from "./DeleteTodo";
 import img from "../assets/todo.jpg";
 import { useTodo } from "@/contexts/TodoContext";
 import { useEffect, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import EditTodo from "./EditTodo";
+import TodoItem from "./TodoItem";
 
 export default function TodoList() {
   const { todoList } = useTodo();
@@ -70,25 +66,7 @@ export default function TodoList() {
             alignItems="stretch"
           >
             {todoList.map((todo) => (
-              <HStack key={todo.id}>
-                <CheckboxCard.Root
-                  key={todo.id}
-                  variant="surface"
-                  colorPalette="blue"
-                  borderColor="blue.100"
-                >
-                  <CheckboxCard.HiddenInput />
-                  <CheckboxCard.Control>
-                    <CheckboxCard.Label>
-                      <Text w="100%" p="8px" borderRadius="lg" color="blue.400">
-                        {todo.text}
-                      </Text>
-                      <DeleteTodo id={todo.id} />
-                      <EditTodo todo={todo} />
-                    </CheckboxCard.Label>
-                  </CheckboxCard.Control>
-                </CheckboxCard.Root>
-              </HStack>
+              <TodoItem todo={todo} />
             ))}
           </VStack>
           <ClearTodoList />

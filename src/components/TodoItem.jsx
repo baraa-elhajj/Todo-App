@@ -1,4 +1,4 @@
-import { CheckboxCard, HStack, Text } from "@chakra-ui/react";
+import { HStack, Text } from "@chakra-ui/react";
 import DeleteTodo from "./DeleteTodo";
 import EditTodo from "./EditTodo";
 import { useTodo } from "@/contexts/TodoContext";

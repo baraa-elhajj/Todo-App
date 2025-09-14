@@ -2,6 +2,7 @@ import { toaster } from "@/components/ui/toaster";
 import {
   addTodoDB,
   clearTodoListDB,
+  completeTodoDB,
   deleteTodoDB,
   fetchTodoListDB,
   updateTodoDB,
@@ -94,6 +95,25 @@ export function TodoProvider({ children }) {
     }
   };
 
+  const completeTodo = async (id, isCompleted) => {
+    try {
+      const updatedTodo = await completeTodoDB(id, isCompleted);
+      setTodoList(
+        todoList.map((todo) => (todo.id === id ? updatedTodo : todo))
+      );
+      if (isCompleted) {
+        toaster.create({
+          title: "Good Job! Todo Completed",
+          type: "success",
+          duration: 2000,
+        });
+      }
+    } catch (error) {
+      setError("Failed to set todo as completed/uncompleted. Try again.");
+      console.error(error);
+    }
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -102,6 +122,7 @@ export function TodoProvider({ children }) {
         deleteTodo,
         clearTodoList,
         editTodo,
+        completeTodo,
         error,
         setError,
       }}

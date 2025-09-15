@@ -92,6 +92,12 @@ npm run dev
 
 ---
 
+## Live Demo
+
+Deployed on Vercel, check it out: https://b-todoapp.vercel.app/
+
+---
+
 ## Contribution
 
 Feel free to fork this project or suggest improvements if you find something cool!

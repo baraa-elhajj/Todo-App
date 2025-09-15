@@ -86,6 +86,7 @@ export default function EditTodo({ todo }) {
                   variant="outline"
                   value={newTodoText}
                   onChange={(e) => setNewTodoText(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
                   mb="2"
                   disabled={loading}
                 />

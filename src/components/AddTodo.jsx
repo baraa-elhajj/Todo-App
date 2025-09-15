@@ -27,7 +27,7 @@ export default function AddTodo() {
   };
 
   return (
-    <HStack h={45}>
+    <HStack h={45} w={{ base: "90%", md: "600px" }} justify="center">
       <Input
         h="100%"
         variant="outline"
@@ -42,6 +42,7 @@ export default function AddTodo() {
       />
       <Button
         size="sm"
+        w={{ base: "25%", md: "15%" }}
         color="white"
         bgColor="blue.400"
         px={10}

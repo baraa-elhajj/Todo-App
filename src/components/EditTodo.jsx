@@ -66,7 +66,11 @@ export default function EditTodo({ todo }) {
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content>
+          <Dialog.Content
+            style={{
+              width: "90%",
+            }}
+          >
             <Dialog.Header>
               <Dialog.Title color="blue.400">Edit Todo</Dialog.Title>
               <Dialog.CloseTrigger asChild>

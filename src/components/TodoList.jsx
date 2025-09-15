@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Heading,
   Image,
@@ -28,12 +29,14 @@ export default function TodoList() {
   if (loading) {
     return (
       <>
-        <DotLottieReact
-          src="https://lottie.host/1d57a315-e7df-4284-b98f-11271d96febf/Mlv6dHYkpZ.lottie"
-          loop
-          autoplay
-          style={{ width: "40%", height: "auto" }}
-        />
+        <Box w={{ base: "100%", md: "40%" }} h="auto" mx="auto">
+          <DotLottieReact
+            src="https://lottie.host/1d57a315-e7df-4284-b98f-11271d96febf/Mlv6dHYkpZ.lottie"
+            loop
+            autoplay
+            style={{ width: "100%", height: "100%" }}
+          />
+        </Box>
         <Heading
           mt={15}
           p={5}
@@ -50,7 +53,7 @@ export default function TodoList() {
   return (
     <>
       <Flex justify="center">
-        <Image src={img} maxW="25%" />
+        <Image src={img} maxW={{ base: "60%", md: "300px" }} />
       </Flex>
 
       {todoList.length !== 0 ? (

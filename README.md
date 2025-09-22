@@ -94,7 +94,7 @@ npm run dev
 
 ## Live Demo
 
-Deployed on Vercel, check it out: https://b-todoapp.vercel.app/
+Deployed on Vercel, check it out: https://todoapp-lb.vercel.app/
 
 ---
 

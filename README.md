@@ -92,6 +92,14 @@ npm run dev
 
 ---
 
+## Preview
+
+### Main page
+
+![app screenshot](./public/screenshots/app-screenshot.png)
+
+---
+
 ## Live Demo
 
 Deployed on Vercel, check it out: https://todoapp-lb.vercel.app/

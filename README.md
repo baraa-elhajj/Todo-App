@@ -26,41 +26,6 @@ This project demonstrates clean state management, database integration, and a mo
 
 ---
 
-## Project Structure
-
-```
-├── assets/
-│   └── todo.jpg
-├── components/
-│   ├── ui/
-│   │   ├── ErrorAlert.jsx
-│   │   ├── alert.jsx
-│   │   └── toaster.jsx
-│   ├── AddTodo.jsx
-│   ├── ClearTodoList.jsx
-│   ├── DeleteTodo.jsx
-│   ├── EditTodo.jsx
-│   ├── ScrollToTopButton.jsx
-│   ├── TodoItem.jsx
-│   └── TodoList.jsx
-├── contexts/
-│   └── TodoContext.jsx
-├── services/
-│   └── todoService.jsx
-├── App.css
-├── App.jsx
-├── index.css
-├── main.jsx
-└── supabase-client.js
-```
-
-- **components/** → UI components (todos, forms, buttons)
-- **context/** → Context Provider for global todo state
-- **services/** → Database logic (CRUD methods)
-- **supabaseClient.js** → Supabase client configuration
-
----
-
 ## Installation & Setup
 
 1. **Clone the repository**

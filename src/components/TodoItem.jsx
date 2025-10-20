@@ -1,16 +1,14 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack, IconButton, Text } from "@chakra-ui/react";
 import DeleteTodo from "./DeleteTodo";
 import EditTodo from "./EditTodo";
 import { useTodo } from "@/contexts/TodoContext";
-import { useState } from "react";
+import { FaCheck, FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 
 export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();
-  const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
 
   const handleOnClick = async () => {
-    setIsCompleted(!isCompleted);
-    completeTodo(todo.id, !isCompleted);
+    completeTodo(todo.id, !todo.completed);
   };
 
   return (
@@ -20,15 +18,21 @@ export default function TodoItem({ todo }) {
       border="sm"
       borderRadius="lg"
       borderColor="blue.200"
-      bgColor={todo.isCompleted ? "blue.100" : "white"}
-      onClick={handleOnClick}
-      cursor="pointer"
+      bgColor={todo.completed ? "#eef8feff" : "white"}
     >
       <Text w="100%" p="8px" color="blue.400">
         {todo.text}
       </Text>
+
       <DeleteTodo id={todo.id} />
       <EditTodo todo={todo} />
+      <IconButton
+        rounded="full"
+        bgColor={todo.completed ? "green.400" : "blue.400"}
+        onClick={handleOnClick}
+      >
+        <FaCheck />
+      </IconButton>
     </HStack>
   );
 }

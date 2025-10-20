@@ -3,19 +3,19 @@
 A simple **full-stack Todo application** built with **React**, **Supabase**, **Chakra UI**, and **React Context API**.  
 This project demonstrates clean state management, database integration, and a modular architecture.
 
----
-
 ## Features
 
 - CRUD functions on todos + marking them as completed
 - Clear all todos in one click
-- Persistent storage with [Supabase](https://supabase.com)
+- Persistent storage with [Supabase](https://supabase.com) (⚠️ Disabled to save resources. Uses local storage now instead)
 - Global state management using React Context
 - Cool UI with [Chakra UI](https://chakra-ui.com)
 - Loading indicators for a smooth UX
 - Organized project structure with services and contexts
 
----
+### Note
+
+Why use Supabase? Since no login feature was implemented yet, the use of Supabase doesn't really make sense. It's just to desmostrate its usage and get used to it. If a login feature is impleted later, we can re-enable it.
 
 ## Tech Stack
 
@@ -59,9 +59,7 @@ npm run dev
 
 ## Preview
 
-### Main page
-
-![app screenshot](./public/screenshots/app-screenshot.png)
+<img src="public/screenshots/app-screenshot.png" width="700" height="600"/>
 
 ---
 
@@ -73,4 +71,4 @@ Deployed on Vercel, check it out: https://todoapp-lb.vercel.app/
 
 ## Contribution
 
-Feel free to fork this project or suggest improvements if you find something cool!
+Love this project? Drop a star ⭐ and feel free to fork it or suggest improvements if you find something cool!

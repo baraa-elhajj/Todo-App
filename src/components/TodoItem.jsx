@@ -2,7 +2,7 @@ import { HStack, IconButton, Text } from "@chakra-ui/react";
 import DeleteTodo from "./DeleteTodo";
 import EditTodo from "./EditTodo";
 import { useTodo } from "@/contexts/TodoContext";
-import { FaCheck, FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 
 export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();

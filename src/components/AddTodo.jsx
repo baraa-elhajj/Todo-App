@@ -1,5 +1,5 @@
 import { useTodo } from "@/contexts/TodoContext";
-import { Button, HStack, Input } from "@chakra-ui/react";
+import { Button, HStack, Input, Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import { toaster } from "./ui/toaster";
 
@@ -49,10 +49,15 @@ export default function AddTodo() {
         h="100%"
         type="submit"
         onClick={handleOnClick}
-        loading={loading}
-        loadingText="Adding"
+        disabled={loading}
       >
-        Add
+        {loading ? (
+          <HStack gap={2} justify="center">
+            <Spinner size="sm" /> Adding
+          </HStack>
+        ) : (
+          "Add"
+        )}
       </Button>
     </HStack>
   );

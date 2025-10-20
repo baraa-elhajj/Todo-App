@@ -1,113 +1,92 @@
 import { toaster } from "@/components/ui/toaster";
-import {
-  addTodoDB,
-  clearTodoListDB,
-  completeTodoDB,
-  deleteTodoDB,
-  fetchTodoListDB,
-  updateTodoDB,
-} from "@/services/todoService";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const TodoContext = createContext();
+const LOCAL_STORAGE_KEY = "todoList";
 
 export function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
   const [error, setError] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    async function loadTodos() {
-      try {
-        const data = await fetchTodoListDB();
-        const sorted = data.sort((a, b) => a.id - b.id);
-        setTodoList(sorted);
-      } catch (error) {
-        setError("Failed to fetch todo list. Try refreshing the page.");
-        console.error(error);
-      }
+    try {
+      const storedTodos =
+        JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+      const sorted = storedTodos.sort((a, b) => a.id - b.id);
+      setTodoList(sorted);
+      setLoaded(true);
+    } catch (err) {
+      setError("Failed to load todos from local storage.");
+      console.error(err);
     }
-
-    loadTodos();
   }, []);
 
-  const addTodo = async (text) => {
-    try {
-      const newTodo = await addTodoDB(text);
-      setTodoList((prev) => [...prev, newTodo]);
-      toaster.create({
-        title: "Todo Added",
-        type: "success",
-        duration: 2000,
-      });
-    } catch (error) {
-      setError("Failed to add todo. Try again.");
-      console.error(error);
-    }
-  };
-
-  const deleteTodo = async (id) => {
-    try {
-      await deleteTodoDB(id);
-      setTodoList((prev) => prev.filter((todo) => todo.id !== id));
-      toaster.create({
-        title: "Todo Deleted",
-        type: "success",
-        duration: 2000,
-      });
-    } catch (error) {
-      setError("Failed to delete todo. Try again.");
-      console.error(error);
-    }
-  };
-
-  const clearTodoList = async () => {
-    try {
-      await clearTodoListDB();
-      setTodoList([]);
-      toaster.create({
-        title: "Todo List Cleared",
-        type: "success",
-        duration: 2000,
-      });
-    } catch (error) {
-      setError("Failed to clear todo list. Try again.");
-      console.error(error);
-    }
-  };
-
-  const editTodo = async (id, newText) => {
-    try {
-      const updatedTodo = await updateTodoDB(id, newText);
-      setTodoList(
-        todoList.map((todo) => (todo.id === id ? updatedTodo : todo))
-      );
-      toaster.create({
-        title: "Todo Updated",
-        type: "success",
-        duration: 2000,
-      });
-    } catch (error) {
-      setError("Failed to update todo. Try again.");
-      console.error(error);
-    }
-  };
-
-  const completeTodo = async (id, isCompleted) => {
-    try {
-      const updatedTodo = await completeTodoDB(id, isCompleted);
-      setTodoList(
-        todoList.map((todo) => (todo.id === id ? updatedTodo : todo))
-      );
-      if (isCompleted) {
-        toaster.create({
-          title: "Good Job! Todo Completed",
-          type: "success",
-          duration: 2000,
-        });
+  useEffect(() => {
+    if (loaded) {
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList));
+      } catch (err) {
+        console.error("Failed to save todos to local storage.", err);
       }
-    } catch (error) {
-      setError("Failed to set todo as completed/uncompleted. Try again.");
-      console.error(error);
+    }
+  }, [todoList, loaded]);
+
+  const addTodo = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      text,
+      completed: false,
+    };
+    setTodoList((prev) => [...prev, newTodo]);
+    toaster.create({
+      title: "Todo Added",
+      type: "success",
+      duration: 2000,
+    });
+  };
+
+  const deleteTodo = (id) => {
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+    toaster.create({
+      title: "Todo Deleted",
+      type: "success",
+      duration: 2000,
+    });
+  };
+
+  const clearTodoList = () => {
+    setTodoList([]);
+    toaster.create({
+      title: "Todo List Cleared",
+      type: "success",
+      duration: 2000,
+    });
+  };
+
+  const editTodo = (id, newText) => {
+    setTodoList((prev) =>
+      prev.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
+    );
+    toaster.create({
+      title: "Todo Updated",
+      type: "success",
+      duration: 2000,
+    });
+  };
+
+  const completeTodo = (id, isCompleted) => {
+    setTodoList((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: isCompleted } : todo
+      )
+    );
+    if (isCompleted) {
+      toaster.create({
+        title: "Good Job! Todo Completed",
+        type: "success",
+        duration: 2000,
+      });
     }
   };
 
@@ -129,7 +108,6 @@ export function TodoProvider({ children }) {
   );
 }
 
-// Custom context hook
 export function useTodo() {
   return useContext(TodoContext);
 }

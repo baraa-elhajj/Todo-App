@@ -59,7 +59,7 @@ npm run dev
 
 ## Preview
 
-<img src="public/screenshots/app-screenshot.png" width="700" height="600"/>
+<img src="public/screenshots/todoapp.png" />
 
 ---
 

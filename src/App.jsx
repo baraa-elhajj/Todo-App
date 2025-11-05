@@ -1,11 +1,14 @@
-import { Heading, VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
-import { useTodo } from "./contexts/TodoContext";
-import ErrorAlert from "./components/ui/ErrorAlert";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import ErrorAlert from "./components/ui/ErrorAlert";
 import Loader from "./components/ui/Loader";
+
+import { useTodo } from "./contexts/TodoContext";
 
 function App() {
   const { error, setError } = useTodo();
@@ -20,13 +23,11 @@ function App() {
   return (
     <>
       <VStack p={4} minH="100vh">
-        <Heading p={5} fontWeight="extrabold" size="3xl" color="blue.400">
-          Todo App
-        </Heading>
         {loading ? (
           <Loader />
         ) : (
           <>
+            <Header />
             {error && <ErrorAlert error={error} setError={setError} />}
             <AddTodo />
             <TodoList />

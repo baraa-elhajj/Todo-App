@@ -27,7 +27,7 @@ export default function AddTodo() {
   };
 
   return (
-    <HStack h={45} w={{ base: "90%", md: "600px" }} justify="center">
+    <HStack mb={5} h={45} w={{ base: "90%", md: "600px" }} justify="center">
       <Input
         h="100%"
         variant="outline"

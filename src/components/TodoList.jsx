@@ -1,6 +1,5 @@
 import { Flex, Heading, Image, StackSeparator, VStack } from "@chakra-ui/react";
 import ClearTodoList from "./ClearTodoList";
-import img from "../assets/todo.jpg";
 import { useTodo } from "@/contexts/TodoContext";
 import TodoItem from "./TodoItem";
 
@@ -9,10 +8,6 @@ export default function TodoList() {
 
   return (
     <>
-      <Flex justify="center">
-        <Image src={img} maxW={{ base: "60%", md: "300px" }} />
-      </Flex>
-
       {todoList.length !== 0 ? (
         <>
           <VStack

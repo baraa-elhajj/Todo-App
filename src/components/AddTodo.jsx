@@ -1,12 +1,17 @@
 import { useTodo } from "@/contexts/TodoContext";
 import { Button, HStack, Input, Spinner } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toaster } from "./ui/toaster";
 
 export default function AddTodo() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const { addTodo } = useTodo();
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const handleOnClick = () => {
     if (!input.trim()) {
@@ -29,6 +34,7 @@ export default function AddTodo() {
   return (
     <HStack mb={5} h={45} w={{ base: "90%", md: "600px" }} justify="center">
       <Input
+        ref={inputRef}
         h="100%"
         variant="outline"
         colorPalette="blue"

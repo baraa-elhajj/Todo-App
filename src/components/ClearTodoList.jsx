@@ -28,8 +28,8 @@ export default function ClearTodoList() {
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <Flex>
-            <Button color="white" bgColor="red.500" px="8" h="45" mt="4">
-              Clear
+            <Button color="white" bgColor="red.500" px="4" h="45" mt="4">
+              Clear All
             </Button>
           </Flex>
         </Dialog.Trigger>
@@ -43,7 +43,7 @@ export default function ClearTodoList() {
               }}
             >
               <Dialog.Header>
-                <Dialog.Title color="blue.400">Clear all</Dialog.Title>
+                <Dialog.Title color="blue.400">Clear all tasks?</Dialog.Title>
                 <Dialog.CloseTrigger asChild>
                   <CloseButton size="sm" />
                 </Dialog.CloseTrigger>

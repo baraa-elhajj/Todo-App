@@ -17,7 +17,12 @@ export default function DeleteTodo({ id }) {
   };
 
   return (
-    <IconButton rounded="full" bgColor="blue.400" onClick={handleDelete}>
+    <IconButton
+      rounded="full"
+      bgColor="transparent"
+      color="red.400"
+      onClick={handleDelete}
+    >
       {loading ? <Spinner size="sm" /> : <FiTrash2 />}
     </IconButton>
   );

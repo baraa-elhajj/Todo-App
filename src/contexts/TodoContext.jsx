@@ -40,7 +40,7 @@ export function TodoProvider({ children }) {
     };
     setTodoList((prev) => [...prev, newTodo]);
     toaster.create({
-      title: "Todo Added",
+      title: "Task Added",
       type: "success",
       duration: 2000,
     });
@@ -49,7 +49,7 @@ export function TodoProvider({ children }) {
   const deleteTodo = (id) => {
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
     toaster.create({
-      title: "Todo Deleted",
+      title: "Task Deleted",
       type: "success",
       duration: 2000,
     });
@@ -58,7 +58,7 @@ export function TodoProvider({ children }) {
   const clearTodoList = () => {
     setTodoList([]);
     toaster.create({
-      title: "Todo List Cleared",
+      title: "All Tasks Cleared",
       type: "success",
       duration: 2000,
     });
@@ -69,7 +69,7 @@ export function TodoProvider({ children }) {
       prev.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
     );
     toaster.create({
-      title: "Todo Updated",
+      title: "Task Updated",
       type: "success",
       duration: 2000,
     });
@@ -83,7 +83,7 @@ export function TodoProvider({ children }) {
     );
     if (isCompleted) {
       toaster.create({
-        title: "Good Job! Todo Completed",
+        title: "Good Job! Task Completed",
         type: "success",
         duration: 2000,
       });

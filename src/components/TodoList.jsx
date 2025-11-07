@@ -14,6 +14,7 @@ import { useTodo } from "@/contexts/TodoContext";
 import TodoItem from "./TodoItem";
 import { LuSearch } from "react-icons/lu";
 import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function TodoList() {
   const { todoList } = useTodo();
@@ -56,21 +57,32 @@ export default function TodoList() {
 
       {filteredList.length !== 0 ? (
         <>
-          <VStack
-            separator={<StackSeparator />}
-            borderColor="blue.100"
-            borderWidth="2px"
-            p="5"
-            borderRadius="lg"
-            w="100%"
-            maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "35vw" }}
-            alignItems="stretch"
-          >
-            {filteredList.map((todo) => (
-              <TodoItem todo={todo} />
-            ))}
-          </VStack>
-          <ClearTodoList />
+          <AnimatePresence mode="popLayout">
+            <VStack
+              separator={<StackSeparator />}
+              borderColor="blue.100"
+              borderWidth="2px"
+              p="5"
+              borderRadius="lg"
+              w="100%"
+              maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "35vw" }}
+              alignItems="stretch"
+            >
+              {filteredList.map((todo) => (
+                <motion.div
+                  key={todo.id}
+                  layout
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                >
+                  <TodoItem todo={todo} />
+                </motion.div>
+              ))}
+            </VStack>
+            <ClearTodoList />
+          </AnimatePresence>
         </>
       ) : (
         <Heading
@@ -80,7 +92,7 @@ export default function TodoList() {
           size="lg"
           color="blue.400"
         >
-          All done! Nothing todo for now ...
+          No more tasks! Add some ...
         </Heading>
       )}
     </>

@@ -1,7 +1,7 @@
 import { useTodo } from "@/contexts/TodoContext";
 import { Editable, IconButton } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { LuCheck, LuPencilLine, LuX } from "react-icons/lu";
+import { FaCircleCheck } from "react-icons/fa6";
 
 const EditTodo = ({ todo }) => {
   const { editTodo } = useTodo();
@@ -43,14 +43,8 @@ const EditTodo = ({ todo }) => {
       />
       <Editable.Control>
         <Editable.SubmitTrigger asChild>
-          <IconButton
-            variant="outline"
-            size="2xs"
-            bgColor="blue.400"
-            color="white"
-            rounded="full"
-          >
-            <LuCheck />
+          <IconButton rounded="full" bgColor="transparent" color="blue.400">
+            <FaCircleCheck />
           </IconButton>
         </Editable.SubmitTrigger>
       </Editable.Control>

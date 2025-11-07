@@ -1,14 +1,60 @@
-import { Flex, Heading, Image, StackSeparator, VStack } from "@chakra-ui/react";
+import {
+  CloseButton,
+  Flex,
+  Heading,
+  Image,
+  Input,
+  InputGroup,
+  Kbd,
+  StackSeparator,
+  VStack,
+} from "@chakra-ui/react";
 import ClearTodoList from "./ClearTodoList";
 import { useTodo } from "@/contexts/TodoContext";
 import TodoItem from "./TodoItem";
+import { LuSearch } from "react-icons/lu";
+import { useRef, useState } from "react";
 
 export default function TodoList() {
   const { todoList } = useTodo();
+  const [searchTerm, setSearchTerm] = useState("");
+  const inputRef = (useRef < HTMLInputElement) | (null > null);
+
+  const filteredList = todoList.filter((todo) =>
+    todo.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const endElement = searchTerm ? (
+    <CloseButton
+      size="xs"
+      color="blue.400"
+      onClick={() => {
+        setSearchTerm("");
+        inputRef.current?.focus();
+      }}
+      me="-2"
+    />
+  ) : undefined;
 
   return (
     <>
-      {todoList.length !== 0 ? (
+      <InputGroup
+        endElement={endElement}
+        w={{ base: "2xs", md: "lg" }}
+        mb="3"
+        startElement={<LuSearch />}
+      >
+        <Input
+          variant="outline"
+          colorPalette="blue"
+          borderColor="blue.100"
+          placeholder="Search tasks"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </InputGroup>
+
+      {filteredList.length !== 0 ? (
         <>
           <VStack
             separator={<StackSeparator />}
@@ -20,7 +66,7 @@ export default function TodoList() {
             maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "35vw" }}
             alignItems="stretch"
           >
-            {todoList.map((todo) => (
+            {filteredList.map((todo) => (
               <TodoItem todo={todo} />
             ))}
           </VStack>

@@ -2,7 +2,7 @@ import { HStack, IconButton } from "@chakra-ui/react";
 import DeleteTodo from "./DeleteTodo";
 import { useTodo } from "@/contexts/TodoContext";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
-import EditableItem from "./ui/EditableItem";
+import EditTodo from "./EditTodo";
 
 export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();
@@ -20,7 +20,7 @@ export default function TodoItem({ todo }) {
       borderColor="blue.200"
       bgColor={todo.completed ? "#eef8feff" : "white"}
     >
-      <EditableItem todo={todo} />
+      <EditTodo todo={todo} />
       <IconButton
         rounded="full"
         bgColor="transparent"

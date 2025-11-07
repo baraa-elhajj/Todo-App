@@ -3,7 +3,7 @@ import { Editable, IconButton } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { LuCheck, LuPencilLine, LuX } from "react-icons/lu";
 
-const EditableItem = ({ todo }) => {
+const EditTodo = ({ todo }) => {
   const { editTodo } = useTodo();
   const [todoText, setTodoText] = useState(todo.text);
   const textareaRef = useRef(null);
@@ -58,4 +58,4 @@ const EditableItem = ({ todo }) => {
   );
 };
 
-export default EditableItem;
+export default EditTodo;

@@ -1,7 +1,7 @@
-import { HStack, IconButton, Text } from "@chakra-ui/react";
+import { HStack, IconButton } from "@chakra-ui/react";
 import DeleteTodo from "./DeleteTodo";
 import { useTodo } from "@/contexts/TodoContext";
-import { FaRegCircleCheck } from "react-icons/fa6";
+import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import EditableItem from "./ui/EditableItem";
 
 export default function TodoItem({ todo }) {
@@ -27,7 +27,7 @@ export default function TodoItem({ todo }) {
         color={todo.completed ? "green.400" : "blue.400"}
         onClick={handleOnClick}
       >
-        <FaRegCircleCheck />
+        {todo.completed ? <FaCircleCheck /> : <FaRegCircleCheck />}
       </IconButton>
       <DeleteTodo id={todo.id} />
     </HStack>

@@ -16,8 +16,6 @@ import { LuSearch } from "react-icons/lu";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdFilterList, MdFilterListAlt } from "react-icons/md";
-import { IoMdAdd } from "react-icons/io";
-import { FaPlus } from "react-icons/fa6";
 
 export default function TodoList() {
   const { todoList } = useTodo();

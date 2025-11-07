@@ -1,11 +1,11 @@
 import {
   CloseButton,
   Flex,
+  Group,
   Heading,
-  Image,
+  IconButton,
   Input,
   InputGroup,
-  Kbd,
   StackSeparator,
   VStack,
 } from "@chakra-ui/react";
@@ -15,11 +15,15 @@ import TodoItem from "./TodoItem";
 import { LuSearch } from "react-icons/lu";
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MdFilterList, MdFilterListAlt } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
+import { FaPlus } from "react-icons/fa6";
 
 export default function TodoList() {
   const { todoList } = useTodo();
   const [searchTerm, setSearchTerm] = useState("");
   const inputRef = (useRef < HTMLInputElement) | (null > null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const filteredList = todoList.filter((todo) =>
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,44 +37,77 @@ export default function TodoList() {
         setSearchTerm("");
         inputRef.current?.focus();
       }}
-      me="-2"
+      me="-1"
     />
   ) : undefined;
 
   return (
     <>
-      <InputGroup
-        endElement={endElement}
-        w={{ base: "2xs", md: "lg" }}
-        mb="3"
-        startElement={<LuSearch />}
+      <Flex
+        justify="flex-end"
+        w="100%"
+        maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "35vw" }}
+        ml="3"
       >
-        <Input
-          variant="outline"
-          colorPalette="blue"
-          borderColor="blue.100"
-          placeholder="Search tasks"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </InputGroup>
+        <Group>
+          <AnimatePresence initial={false}>
+            {isOpen && (
+              <motion.div
+                key="input"
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: "25vw", opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <InputGroup endElement={endElement}>
+                  <Input
+                    autoFocus
+                    variant="outline"
+                    colorPalette="blue"
+                    borderColor="blue.100"
+                    placeholder="Search tasks"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </InputGroup>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <IconButton
+            bgColor="transparent"
+            color="blue.400"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            <LuSearch />
+          </IconButton>
+          <IconButton bgColor="transparent" color="blue.400">
+            <MdFilterListAlt />
+          </IconButton>
+          <IconButton bgColor="transparent" color="blue.400">
+            <MdFilterList />
+          </IconButton>
+          {/* TODO: move addTodo here */}
+          {/* <IconButton bgColor="transparent" color="blue.400">
+            <FaPlus />
+          </IconButton> */}
+        </Group>
+      </Flex>
 
       {filteredList.length !== 0 ? (
         <>
-          <AnimatePresence mode="popLayout">
-            <VStack
-              separator={<StackSeparator />}
-              borderColor="blue.100"
-              borderWidth="2px"
-              p="5"
-              borderRadius="lg"
-              w="100%"
-              maxW={{ base: "90vw", sm: "60vw", lg: "50vw", xl: "35vw" }}
-              alignItems="stretch"
-            >
-              {filteredList.map((todo) => (
+          <VStack
+            separator={<StackSeparator />}
+            borderColor="blue.100"
+            borderWidth="2px"
+            p="5"
+            borderRadius="lg"
+            w="100%"
+            maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "35vw" }}
+            alignItems="stretch"
+          >
+            {filteredList.map((todo) => (
+              <AnimatePresence mode="popLayout">
                 <motion.div
-                  key={todo.id}
                   layout
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -79,10 +116,10 @@ export default function TodoList() {
                 >
                   <TodoItem todo={todo} />
                 </motion.div>
-              ))}
-            </VStack>
-            <ClearTodoList />
-          </AnimatePresence>
+              </AnimatePresence>
+            ))}
+          </VStack>
+          <ClearTodoList />
         </>
       ) : (
         <Heading

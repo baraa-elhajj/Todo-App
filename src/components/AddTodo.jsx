@@ -2,6 +2,7 @@ import { useTodo } from "@/contexts/TodoContext";
 import { Button, HStack, Input, Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import { toaster } from "./ui/toaster";
+import { motion } from "framer-motion";
 
 export default function AddTodo() {
   const [input, setInput] = useState("");
@@ -27,38 +28,47 @@ export default function AddTodo() {
   };
 
   return (
-    <HStack mb={5} h={45} w={{ base: "90%", md: "600px" }} justify="center">
-      <Input
-        h="100%"
-        variant="outline"
-        colorPalette="blue"
-        borderColor="blue.100"
-        w="xs"
-        placeholder="What are you up for today?"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleOnClick()}
-        disabled={loading}
-      />
-      <Button
-        size="sm"
-        w={{ base: "25%", md: "15%" }}
-        color="white"
-        bgColor="blue.400"
-        px={10}
-        h="100%"
-        type="submit"
-        onClick={handleOnClick}
-        disabled={loading}
-      >
-        {loading ? (
-          <HStack gap={2} justify="center">
-            <Spinner size="sm" /> Adding
-          </HStack>
-        ) : (
-          "Add"
-        )}
-      </Button>
-    </HStack>
+    <motion.div
+      key="add-input"
+      initial={{ opacity: 0, y: -10, height: 0 }}
+      animate={{ opacity: 1, y: 0, height: "50px" }}
+      exit={{ opacity: 0, y: -10, height: 0 }}
+      transition={{ duration: 0.25, ease: "easeInOut" }}
+    >
+      <HStack mb={5} h={45} justify="center">
+        <Input
+          h="85%"
+          variant="outline"
+          colorPalette="blue"
+          borderColor="blue.100"
+          w={{ base: "65%", md: "25vw" }}
+          placeholder="What are you up for today?"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleOnClick()}
+          disabled={loading}
+          autoFocus
+        />
+        <Button
+          size="sm"
+          w={{ base: "25%", md: "20%" }}
+          color="white"
+          bgColor="blue.400"
+          px={10}
+          h="85%"
+          type="submit"
+          onClick={handleOnClick}
+          disabled={loading}
+        >
+          {loading ? (
+            <HStack gap={2} justify="center">
+              <Spinner size="sm" /> Adding
+            </HStack>
+          ) : (
+            "Add"
+          )}
+        </Button>
+      </HStack>
+    </motion.div>
   );
 }

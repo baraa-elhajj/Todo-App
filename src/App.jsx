@@ -29,7 +29,6 @@ function App() {
           <>
             <Header />
             {error && <ErrorAlert error={error} setError={setError} />}
-            <AddTodo />
             <TodoList />
           </>
         )}

@@ -84,13 +84,18 @@ export default function TodoList() {
           <IconButton bgColor="transparent" color="blue.400">
             <MdFilterList />
           </IconButton>
-          {/* TODO: move addTodo here */}
-          {/* <IconButton bgColor="transparent" color="blue.400">
+          <IconButton
+            bgColor="transparent"
+            color="blue.400"
+            onClick={() => setIsAddOpen((prev) => !prev)}
+          >
             <FaPlus />
-          </IconButton> */}
+          </IconButton>
         </Group>
       </Flex>
-
+      <Stack>
+        <AnimatePresence>{isAddOpen && <AddTodo />}</AnimatePresence>
+      </Stack>
       {filteredList.length !== 0 ? (
         <>
           <VStack

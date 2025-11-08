@@ -36,7 +36,7 @@ export function TodoProvider({ children }) {
     const newTodo = {
       id: Date.now(),
       text,
-      completed: false,
+      isCompleted: false,
     };
     setTodoList((prev) => [...prev, newTodo]);
     toaster.create({
@@ -78,7 +78,7 @@ export function TodoProvider({ children }) {
   const completeTodo = (id, isCompleted) => {
     setTodoList((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: isCompleted } : todo
+        todo.id === id ? { ...todo, isCompleted: isCompleted } : todo
       )
     );
     if (isCompleted) {

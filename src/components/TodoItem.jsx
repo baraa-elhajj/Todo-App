@@ -1,8 +1,17 @@
-import { HStack, IconButton, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Em,
+  HStack,
+  IconButton,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import DeleteTodo from "./DeleteTodo";
 import { useTodo } from "@/contexts/TodoContext";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import EditTodo from "./EditTodo";
+import { GetCurrentDateString } from "@/utils/dateHelper";
 
 export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();
@@ -12,30 +21,37 @@ export default function TodoItem({ todo }) {
   };
 
   return (
-    <HStack
+    <VStack
       key={todo.id}
-      p="5"
       border="sm"
       borderRadius="lg"
       borderColor="blue.200"
+      p="5"
       bgColor={todo.isCompleted ? "#eef8feff" : "white"}
     >
-      <EditTodo todo={todo} />
-      <Stack
-        direction={{ base: "column", sm: "row" }}
-        spacing={2}
-        align="center"
-      >
-        <IconButton
-          rounded="full"
-          bgColor="transparent"
-          color={todo.isCompleted ? "green.400" : "blue.400"}
-          onClick={handleOnClick}
+      <HStack w="100%">
+        <EditTodo todo={todo} />
+        <Stack
+          direction={{ base: "column", sm: "row" }}
+          spacing={2}
+          align="center"
         >
-          {todo.isCompleted ? <FaCircleCheck /> : <FaRegCircleCheck />}
-        </IconButton>
-        <DeleteTodo id={todo.id} />
-      </Stack>
-    </HStack>
+          <IconButton
+            rounded="full"
+            bgColor="transparent"
+            color={todo.isCompleted ? "green.400" : "blue.400"}
+            onClick={handleOnClick}
+          >
+            {todo.isCompleted ? <FaCircleCheck /> : <FaRegCircleCheck />}
+          </IconButton>
+          <DeleteTodo id={todo.id} />
+        </Stack>
+      </HStack>
+      <Box mt="2" w="95%" textAlign="right">
+        <Text fontSize="xs" color="blue.300">
+          <Em>{GetCurrentDateString(todo.dateCreated)}</Em>
+        </Text>
+      </Box>
+    </VStack>
   );
 }

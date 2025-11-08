@@ -1,11 +1,9 @@
 import {
-  CloseButton,
   Flex,
   Group,
   Heading,
   IconButton,
-  Input,
-  InputGroup,
+  Stack,
   StackSeparator,
   VStack,
 } from "@chakra-ui/react";
@@ -13,31 +11,22 @@ import ClearTodoList from "./ClearTodoList";
 import { useTodo } from "@/contexts/TodoContext";
 import TodoItem from "./TodoItem";
 import { LuSearch } from "react-icons/lu";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdFilterList, MdFilterListAlt } from "react-icons/md";
+import { FaPlus } from "react-icons/fa6";
+import AddTodo from "./AddTodo";
+import SearchTodo from "./SearchTodo";
 
 export default function TodoList() {
   const { todoList } = useTodo();
   const [searchTerm, setSearchTerm] = useState("");
-  const inputRef = (useRef < HTMLInputElement) | (null > null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAddOpen, setIsAddOpen] = useState(false);
 
   const filteredList = todoList.filter((todo) =>
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const endElement = searchTerm ? (
-    <CloseButton
-      size="xs"
-      color="blue.400"
-      onClick={() => {
-        setSearchTerm("");
-        inputRef.current?.focus();
-      }}
-      me="-1"
-    />
-  ) : undefined;
 
   return (
     <>
@@ -46,35 +35,21 @@ export default function TodoList() {
         w="100%"
         maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "35vw" }}
         ml="3"
+        mb="-1"
       >
         <Group>
           <AnimatePresence initial={false}>
-            {isOpen && (
-              <motion.div
-                key="input"
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "25vw", opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <InputGroup endElement={endElement}>
-                  <Input
-                    autoFocus
-                    variant="outline"
-                    colorPalette="blue"
-                    borderColor="blue.100"
-                    placeholder="Search tasks"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </InputGroup>
-              </motion.div>
+            {isSearchOpen && (
+              <SearchTodo
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+              />
             )}
           </AnimatePresence>
           <IconButton
             bgColor="transparent"
             color="blue.400"
-            onClick={() => setIsOpen((prev) => !prev)}
+            onClick={() => setIsSearchOpen((prev) => !prev)}
           >
             <LuSearch />
           </IconButton>

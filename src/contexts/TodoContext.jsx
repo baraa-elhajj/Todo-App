@@ -34,9 +34,11 @@ export function TodoProvider({ children }) {
 
   const addTodo = (text) => {
     const newTodo = {
-      id: Date.now(),
+      id: `${Date.now()}-${Math.floor(Math.random() * 1000)}`,
       text,
       isCompleted: false,
+      dateCreated: Date.now(),
+      tags: [],
     };
     setTodoList((prev) => [...prev, newTodo]);
     toaster.create({

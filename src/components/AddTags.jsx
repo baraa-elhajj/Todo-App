@@ -1,0 +1,76 @@
+import { useTodo } from "@/contexts/TodoContext";
+import { Button, HStack, Input, Spinner } from "@chakra-ui/react";
+import { useState } from "react";
+import { toaster } from "./ui/toaster";
+import { motion } from "framer-motion";
+
+const AddTags = () => {
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { addToTagsList } = useTodo();
+
+  const handleOnClick = () => {
+    if (!input.trim()) {
+      toaster.create({
+        title: "Add something first!",
+        type: "warning",
+        duration: 2000,
+      });
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(() => {
+      addToTagsList(input);
+      setLoading(false);
+      setInput("");
+    }, 1000);
+  };
+
+  return (
+    <motion.div
+      key="add-tag-input"
+      initial={{ opacity: 0, y: -10, height: 0 }}
+      animate={{ opacity: 1, y: 0, height: "50px" }}
+      exit={{ opacity: 0, y: -10, height: 0 }}
+      transition={{ duration: 0.25, ease: "easeInOut" }}
+    >
+      <HStack mb={5} h={45} justify="center">
+        <Input
+          h="85%"
+          variant="outline"
+          colorPalette="blue"
+          borderColor="blue.100"
+          w={{ base: "65%", md: "25vw" }}
+          placeholder="Add tags"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleOnClick()}
+          disabled={loading}
+          autoFocus
+        />
+        <Button
+          size="sm"
+          w={{ base: "25%", md: "20%" }}
+          color="white"
+          bgColor="blue.400"
+          px={10}
+          h="85%"
+          type="submit"
+          onClick={handleOnClick}
+          disabled={loading}
+        >
+          {loading ? (
+            <HStack gap={2} justify="center">
+              <Spinner size="sm" /> Adding
+            </HStack>
+          ) : (
+            "Add"
+          )}
+        </Button>
+      </HStack>
+    </motion.div>
+  );
+};
+
+export default AddTags;

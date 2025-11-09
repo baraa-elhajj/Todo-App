@@ -8,6 +8,7 @@ export function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [tagsList, setTagsList] = useState([]);
 
   useEffect(() => {
     try {
@@ -40,6 +41,7 @@ export function TodoProvider({ children }) {
       dateCreated: Date.now(),
       tags: [],
     };
+
     setTodoList((prev) => [...prev, newTodo]);
     toaster.create({
       title: "Task Added",
@@ -92,22 +94,39 @@ export function TodoProvider({ children }) {
     }
   };
 
-  return (
-    <TodoContext.Provider
-      value={{
-        todoList,
-        addTodo,
-        deleteTodo,
-        clearTodoList,
-        editTodo,
-        completeTodo,
-        error,
-        setError,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
+  const addTag = (id, tag) => {
+    setTodoList((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, tags: [...todo.tags, tag] } : todo
+      )
+    );
+  };
+
+  const deleteTag = (id, tag) => {
+    setTodoList((prev) =>
+      prev.map((todo) =>
+        todo.id === id
+          ? { ...todo, tags: todo.tags.filter((t) => t !== tag) }
+          : todo
+      )
+    );
+  };
+
+  const value = {
+    todoList,
+    tagsList,
+    addTodo,
+    deleteTodo,
+    clearTodoList,
+    editTodo,
+    completeTodo,
+    addTag,
+    deleteTag,
+    error,
+    setError,
+  };
+
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 }
 
 export function useTodo() {

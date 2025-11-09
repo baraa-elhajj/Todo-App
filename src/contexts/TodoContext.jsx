@@ -35,15 +35,24 @@ export function TodoProvider({ children }) {
           TODO_LIST_LOCAL_STORAGE_KEY,
           JSON.stringify(todoList)
         );
+      } catch (err) {
+        console.error("Failed to save todos to local storage.", err);
+      }
+    }
+  }, [todoList, loaded]);
+
+  useEffect(() => {
+    if (loaded) {
+      try {
         localStorage.setItem(
           TAG_LIST_LOCAL_STORAGE_KEY,
           JSON.stringify(tagsList)
         );
       } catch (err) {
-        console.error("Failed to save todos/tags to local storage.", err);
+        console.error("Failed to save tags to local storage.", err);
       }
     }
-  }, [todoList, tagsList, loaded]);
+  }, [tagsList, loaded]);
 
   const addTodo = (text) => {
     const newTodo = {
@@ -133,6 +142,10 @@ export function TodoProvider({ children }) {
     });
   };
 
+  const deleteFromTagsList = (text) => {
+    setTagsList((prev) => prev.filter((tag) => tag !== text));
+  };
+
   const value = {
     todoList,
     tagsList,
@@ -144,6 +157,7 @@ export function TodoProvider({ children }) {
     addTag,
     deleteTag,
     addToTagsList,
+    deleteFromTagsList,
     error,
     setError,
   };

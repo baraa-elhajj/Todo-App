@@ -50,7 +50,6 @@ export default function TodoItem({ todo }) {
       </HStack>
       <Box mt="2" w="95%" textAlign="right">
         <Text fontSize="xs" color="blue.400">
-          {/* Date.now() to prevent errors for old todos, remove later */}
           <Em>{GetCurrentDateString(todo?.dateCreated)}</Em>
         </Text>
       </Box>

@@ -7,17 +7,17 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import DeleteTodo from "./DeleteTodo";
-import { useTodo } from "@/contexts/TodoContext";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
-import EditTodo from "./EditTodo";
+import { useTodo } from "@/contexts/TodoContext";
 import { GetCurrentDateString } from "@/utils/dateHelper";
+import EditTodo from "./EditTodo";
+import DeleteTodo from "./DeleteTodo";
 import AddTodoTags from "./AddTodoTags";
 
 export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();
 
-  const handleOnClick = async () => {
+  const toggleCompleted = async () => {
     completeTodo(todo.id, !todo.isCompleted);
   };
 
@@ -41,7 +41,7 @@ export default function TodoItem({ todo }) {
             rounded="full"
             bgColor="transparent"
             color={todo.isCompleted ? "green.400" : "blue.400"}
-            onClick={handleOnClick}
+            onClick={toggleCompleted}
           >
             {todo.isCompleted ? <FaCircleCheck /> : <FaRegCircleCheck />}
           </IconButton>

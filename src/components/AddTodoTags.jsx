@@ -39,7 +39,7 @@ const AddTodoTags = ({ id, tags }) => {
           </Menu.Trigger>
 
           <Menu.Positioner>
-            <Menu.Content w="50px" p={0}>
+            <Menu.Content w="auto" p={0}>
               {availableTags.length > 0 ? (
                 availableTags.map((tag) => (
                   <Menu.Item

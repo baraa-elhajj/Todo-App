@@ -17,12 +17,15 @@ import { MdFilterList, MdFilterListAlt } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import AddTodo from "./AddTodo";
 import SearchTodo from "./SearchTodo";
+import { TbTagPlus } from "react-icons/tb";
+import AddTags from "./AddTags";
 
 export default function TodoList() {
   const { todoList } = useTodo();
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isAddTagOpen, setIsAddTagOpen] = useState(false);
 
   const filteredList = todoList.filter((todo) =>
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
@@ -62,6 +65,14 @@ export default function TodoList() {
           <IconButton
             bgColor="transparent"
             color="blue.400"
+            transform="scaleX(-1)"
+            onClick={() => setIsAddTagOpen((prev) => !prev)}
+          >
+            <TbTagPlus />
+          </IconButton>
+          <IconButton
+            bgColor="transparent"
+            color="blue.400"
             onClick={() => setIsAddOpen((prev) => !prev)}
           >
             <FaPlus />
@@ -70,6 +81,7 @@ export default function TodoList() {
       </Flex>
       <Stack>
         <AnimatePresence>{isAddOpen && <AddTodo />}</AnimatePresence>
+        <AnimatePresence>{isAddTagOpen && <AddTags />}</AnimatePresence>
       </Stack>
       {filteredList.length !== 0 ? (
         <>

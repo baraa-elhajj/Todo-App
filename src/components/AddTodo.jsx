@@ -35,7 +35,7 @@ export default function AddTodo() {
       exit={{ opacity: 0, y: -10, height: 0 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
     >
-      <HStack mb={5} h={45} justify="center">
+      <HStack h={45} justify="center">
         <Input
           h="85%"
           variant="outline"

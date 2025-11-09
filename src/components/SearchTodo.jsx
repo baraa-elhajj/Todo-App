@@ -9,6 +9,7 @@ const SearchTodo = ({ searchTerm, setSearchTerm }) => {
     <CloseButton
       size="xs"
       color="blue.400"
+      bgColor="transparent"
       onClick={() => {
         setSearchTerm("");
         inputRef.current?.focus();
@@ -21,7 +22,7 @@ const SearchTodo = ({ searchTerm, setSearchTerm }) => {
     <motion.div
       key="input"
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: "20vw", opacity: 1 }}
+      animate={{ width: "18vw", opacity: 1 }}
       exit={{ width: 0, opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >

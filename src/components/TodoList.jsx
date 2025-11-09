@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Group,
   Heading,
@@ -34,11 +35,11 @@ export default function TodoList() {
   return (
     <>
       <Flex
-        justify="flex-end"
+        direction="column"
+        align="flex-end"
         w="100%"
         maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "35vw" }}
         ml="3"
-        mb="-1"
       >
         <Group>
           <AnimatePresence initial={false}>
@@ -79,10 +80,10 @@ export default function TodoList() {
           </IconButton>
         </Group>
       </Flex>
-      <Stack>
+      <Box>
         <AnimatePresence>{isAddOpen && <AddTodo />}</AnimatePresence>
         <AnimatePresence>{isAddTagOpen && <AddTags />}</AnimatePresence>
-      </Stack>
+      </Box>
       {filteredList.length !== 0 ? (
         <>
           <VStack

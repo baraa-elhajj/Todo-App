@@ -1,5 +1,5 @@
 import { useTodo } from "@/contexts/TodoContext";
-import { HStack, TagsInput } from "@chakra-ui/react";
+import { TagsInput, VStack } from "@chakra-ui/react";
 import { toaster } from "./ui/toaster";
 import { motion } from "framer-motion";
 import { randomColor } from "@/utils/colorHelper";
@@ -24,11 +24,12 @@ const AddTags = () => {
     <motion.div
       key="add-tag-input"
       initial={{ opacity: 0, y: -10, height: 0 }}
-      animate={{ opacity: 1, y: 0, height: "50px" }}
+      animate={{ opacity: 1, y: 0, height: "auto" }}
       exit={{ opacity: 0, y: -10, height: 0 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
+      style={{ overflow: "visible" }}
     >
-      <HStack mb={5} justify="center">
+      <VStack>
         <TagsInput.Root
           defaultValue={tagsList}
           variant="outline"
@@ -42,7 +43,11 @@ const AddTags = () => {
               {({ value }) =>
                 value.map((tag, index) => (
                   <TagsInput.Item key={index} index={index} value={tag}>
-                    <TagsInput.ItemPreview bgColor={randomColor(tag)}>
+                    <TagsInput.ItemPreview
+                      rounded="md"
+                      color="#768aa0ff"
+                      bgColor={randomColor(tag)}
+                    >
                       <TagsInput.ItemText>{tag}</TagsInput.ItemText>
                       <TagsInput.ItemDeleteTrigger
                         onClick={() => deleteFromTagsList(tag)}
@@ -61,7 +66,7 @@ const AddTags = () => {
             />
           </TagsInput.Control>
         </TagsInput.Root>
-      </HStack>
+      </VStack>
     </motion.div>
   );
 };

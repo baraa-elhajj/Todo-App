@@ -1,16 +1,14 @@
 import { useTodo } from "@/contexts/TodoContext";
-import { Button, HStack, Input, Spinner } from "@chakra-ui/react";
-import { useState } from "react";
+import { HStack, TagsInput } from "@chakra-ui/react";
 import { toaster } from "./ui/toaster";
 import { motion } from "framer-motion";
+import { randomColor } from "@/utils/colorHelper";
 
 const AddTags = () => {
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { addToTagsList } = useTodo();
+  const { tagsList, addToTagsList, deleteFromTagsList } = useTodo();
 
-  const handleOnClick = () => {
-    if (!input.trim()) {
+  const handleAddTag = (value) => {
+    if (!value.trim()) {
       toaster.create({
         title: "Add something first!",
         type: "warning",
@@ -19,12 +17,7 @@ const AddTags = () => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(() => {
-      addToTagsList(input);
-      setLoading(false);
-      setInput("");
-    }, 1000);
+    addToTagsList(value);
   };
 
   return (
@@ -35,39 +28,39 @@ const AddTags = () => {
       exit={{ opacity: 0, y: -10, height: 0 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
     >
-      <HStack mb={5} h={45} justify="center">
-        <Input
-          h="85%"
+      <HStack mb={5} justify="center">
+        <TagsInput.Root
+          defaultValue={tagsList}
           variant="outline"
           colorPalette="blue"
-          borderColor="blue.100"
-          w={{ base: "65%", md: "25vw" }}
-          placeholder="Add tags"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleOnClick()}
-          disabled={loading}
+          w={{ base: "93%", md: "32vw" }}
+          my={2}
           autoFocus
-        />
-        <Button
-          size="sm"
-          w={{ base: "25%", md: "20%" }}
-          color="white"
-          bgColor="blue.400"
-          px={10}
-          h="85%"
-          type="submit"
-          onClick={handleOnClick}
-          disabled={loading}
         >
-          {loading ? (
-            <HStack gap={2} justify="center">
-              <Spinner size="sm" /> Adding
-            </HStack>
-          ) : (
-            "Add"
-          )}
-        </Button>
+          <TagsInput.Control borderColor="blue.100">
+            <TagsInput.Context>
+              {({ value }) =>
+                value.map((tag, index) => (
+                  <TagsInput.Item key={index} index={index} value={tag}>
+                    <TagsInput.ItemPreview bgColor={randomColor(tag)}>
+                      <TagsInput.ItemText>{tag}</TagsInput.ItemText>
+                      <TagsInput.ItemDeleteTrigger
+                        onClick={() => deleteFromTagsList(tag)}
+                      />
+                    </TagsInput.ItemPreview>
+                    <TagsInput.ItemInput />
+                  </TagsInput.Item>
+                ))
+              }
+            </TagsInput.Context>
+            <TagsInput.Input
+              placeholder="Add tags"
+              onKeyDown={(e) =>
+                e.key === "Enter" && handleAddTag(e.target.value)
+              }
+            />
+          </TagsInput.Control>
+        </TagsInput.Root>
       </HStack>
     </motion.div>
   );

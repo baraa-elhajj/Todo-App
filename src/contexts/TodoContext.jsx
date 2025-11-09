@@ -31,16 +31,9 @@ export function TodoProvider({ children }) {
   useEffect(() => {
     if (loaded) {
       try {
-        // Populate old todos with new fields
-        const updatedTodos = todoList.map((todo) => ({
-          ...todo,
-          id: `${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-          dateCreated: Date.now(),
-          tags: [],
-        }));
         localStorage.setItem(
           TODO_LIST_LOCAL_STORAGE_KEY,
-          JSON.stringify(updatedTodos)
+          JSON.stringify(todoList)
         );
         localStorage.setItem(
           TAG_LIST_LOCAL_STORAGE_KEY,

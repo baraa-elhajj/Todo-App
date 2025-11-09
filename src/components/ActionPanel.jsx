@@ -14,6 +14,24 @@ const ActionPanel = ({ values }) => {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isAddTagOpen, setIsAddTagOpen] = useState(false);
 
+  const handleSearchBtnClicked = () => {
+    setIsSearchOpen(!isSearchOpen);
+    setIsAddOpen(false);
+    setIsAddTagOpen(false);
+  };
+
+  const handleAddTodoBtnClicked = () => {
+    setIsAddOpen(!isAddOpen);
+    setIsSearchOpen(false);
+    setIsAddTagOpen(false);
+  };
+
+  const handleAddTagsBtnClicked = () => {
+    setIsAddTagOpen(!isAddTagOpen);
+    setIsSearchOpen(false);
+    setIsAddOpen(false);
+  };
+
   return (
     <>
       <Flex
@@ -22,8 +40,9 @@ const ActionPanel = ({ values }) => {
         w="100%"
         maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "35vw" }}
         ml="3"
+        mb="-1"
       >
-        <Group>
+        <Group attached>
           <AnimatePresence initial={false}>
             {isSearchOpen && (
               <SearchTodo
@@ -35,7 +54,7 @@ const ActionPanel = ({ values }) => {
           <IconButton
             bgColor="transparent"
             color="blue.400"
-            onClick={() => setIsSearchOpen((prev) => !prev)}
+            onClick={handleSearchBtnClicked}
           >
             <LuSearch />
           </IconButton>
@@ -49,14 +68,14 @@ const ActionPanel = ({ values }) => {
             bgColor="transparent"
             color="blue.400"
             transform="scaleX(-1)"
-            onClick={() => setIsAddTagOpen((prev) => !prev)}
+            onClick={handleAddTagsBtnClicked}
           >
             <TbTagPlus />
           </IconButton>
           <IconButton
             bgColor="transparent"
             color="blue.400"
-            onClick={() => setIsAddOpen((prev) => !prev)}
+            onClick={handleAddTodoBtnClicked}
           >
             <FaPlus />
           </IconButton>

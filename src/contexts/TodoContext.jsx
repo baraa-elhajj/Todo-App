@@ -18,7 +18,7 @@ export function TodoProvider({ children }) {
       const storedTags =
         JSON.parse(localStorage.getItem(TAG_LIST_LOCAL_STORAGE_KEY)) || [];
 
-      const sorted = storedTodos.sort((a, b) => a.id - b.id);
+      const sorted = storedTodos.sort((a, b) => a.dateCreated - b.dateCreated);
       setTodoList(sorted);
       setTagsList(storedTags);
       setLoaded(true);
@@ -165,6 +165,7 @@ export function TodoProvider({ children }) {
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTodo() {
   return useContext(TodoContext);
 }

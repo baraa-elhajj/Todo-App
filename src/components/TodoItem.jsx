@@ -51,7 +51,7 @@ export default function TodoItem({ todo }) {
       <Box mt="2" w="95%" textAlign="right">
         <Text fontSize="xs" color="blue.400">
           {/* Date.now() to prevent errors for old todos, remove later */}
-          <Em>{GetCurrentDateString(todo?.dateCreated ?? Date.now())}</Em>
+          <Em>{GetCurrentDateString(todo?.dateCreated)}</Em>
         </Text>
       </Box>
       <AddTodoTags id={todo.id} tags={todo.tags} />

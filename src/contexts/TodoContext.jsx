@@ -2,7 +2,8 @@ import { toaster } from "@/components/ui/toaster";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const TodoContext = createContext();
-const LOCAL_STORAGE_KEY = "todoList";
+const TODO_LIST_LOCAL_STORAGE_KEY = "todoList";
+const TAG_LIST_LOCAL_STORAGE_KEY = "tagList";
 
 export function TodoProvider({ children }) {
   const [todoList, setTodoList] = useState([]);
@@ -13,12 +14,16 @@ export function TodoProvider({ children }) {
   useEffect(() => {
     try {
       const storedTodos =
-        JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+        JSON.parse(localStorage.getItem(TODO_LIST_LOCAL_STORAGE_KEY)) || [];
+      const storedTags =
+        JSON.parse(localStorage.getItem(TAG_LIST_LOCAL_STORAGE_KEY)) || [];
+
       const sorted = storedTodos.sort((a, b) => a.id - b.id);
       setTodoList(sorted);
+      setTagsList(storedTags);
       setLoaded(true);
     } catch (err) {
-      setError("Failed to load todos from local storage.");
+      setError("Failed to load todos/tags from local storage.");
       console.error(err);
     }
   }, []);
@@ -26,12 +31,19 @@ export function TodoProvider({ children }) {
   useEffect(() => {
     if (loaded) {
       try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList));
+        localStorage.setItem(
+          TODO_LIST_LOCAL_STORAGE_KEY,
+          JSON.stringify(todoList)
+        );
+        localStorage.setItem(
+          TAG_LIST_LOCAL_STORAGE_KEY,
+          JSON.stringify(tagsList)
+        );
       } catch (err) {
-        console.error("Failed to save todos to local storage.", err);
+        console.error("Failed to save todos/tags to local storage.", err);
       }
     }
-  }, [todoList, loaded]);
+  }, [todoList, tagsList, loaded]);
 
   const addTodo = (text) => {
     const newTodo = {
@@ -112,6 +124,15 @@ export function TodoProvider({ children }) {
     );
   };
 
+  const addToTagsList = (text) => {
+    setTagsList((prev) => [...prev, text]);
+    toaster.create({
+      title: "Tag Added",
+      type: "success",
+      duration: 2000,
+    });
+  };
+
   const value = {
     todoList,
     tagsList,
@@ -122,6 +143,7 @@ export function TodoProvider({ children }) {
     completeTodo,
     addTag,
     deleteTag,
+    addToTagsList,
     error,
     setError,
   };

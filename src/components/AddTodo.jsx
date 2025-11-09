@@ -1,8 +1,9 @@
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 import { useTodo } from "@/contexts/TodoContext";
 import { Button, HStack, Input, Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import { toaster } from "./ui/toaster";
-import { motion } from "framer-motion";
 
 export default function AddTodo() {
   const [input, setInput] = useState("");

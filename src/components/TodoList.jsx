@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Box,
   Flex,
@@ -13,7 +15,6 @@ import { useTodo } from "@/contexts/TodoContext";
 import TodoItem from "./TodoItem";
 import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { MdFilterList, MdFilterListAlt } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import AddTodo from "./AddTodo";

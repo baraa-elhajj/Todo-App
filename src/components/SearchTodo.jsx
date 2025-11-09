@@ -1,5 +1,6 @@
-import { useRef } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import { CloseButton, Input, InputGroup } from "@chakra-ui/react";
 
 const SearchTodo = ({ searchTerm, setSearchTerm }) => {

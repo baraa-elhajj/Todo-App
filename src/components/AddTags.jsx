@@ -1,7 +1,8 @@
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 import { useTodo } from "@/contexts/TodoContext";
 import { TagsInput, VStack } from "@chakra-ui/react";
 import { toaster } from "./ui/toaster";
-import { motion } from "framer-motion";
 import { randomColor } from "@/utils/colorHelper";
 
 const AddTags = () => {

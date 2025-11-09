@@ -12,7 +12,7 @@ import { useTodo } from "@/contexts/TodoContext";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import EditTodo from "./EditTodo";
 import { GetCurrentDateString } from "@/utils/dateHelper";
-import AddTags from "./AddTags";
+import AddTodoTags from "./AddTodoTags";
 
 export default function TodoItem({ todo }) {
   const { completeTodo } = useTodo();
@@ -54,7 +54,7 @@ export default function TodoItem({ todo }) {
           <Em>{GetCurrentDateString(todo?.dateCreated ?? Date.now())}</Em>
         </Text>
       </Box>
-      <AddTags id={todo.id} tags={todo.tags} />
+      <AddTodoTags id={todo.id} tags={todo.tags} />
     </VStack>
   );
 }

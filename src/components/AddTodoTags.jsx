@@ -17,7 +17,7 @@ const randomColor = (str) => {
   return `hsl(${h},${s}%,${l}%)`;
 };
 
-const AddTags = ({ id, tags }) => {
+const AddTodoTags = ({ id, tags }) => {
   const { tagsList, addTag, deleteTag } = useTodo();
   const [selectedTags, setSelectedTags] = useState(tags || []);
 
@@ -99,4 +99,4 @@ const AddTags = ({ id, tags }) => {
   );
 };
 
-export default AddTags;
+export default AddTodoTags;

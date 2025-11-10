@@ -12,12 +12,18 @@ export default function TodoList() {
   const { todoList } = useTodo();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortMethod, setSortMethod] = useState(0);
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [tagsFilter, setTagsFilter] = useState([]);
 
   const actionPanelValues = {
-    searchTerm: searchTerm,
-    setSearchTerm: setSearchTerm,
-    sortMethod: sortMethod,
-    setSortMethod: setSortMethod,
+    searchTerm,
+    setSearchTerm,
+    sortMethod,
+    setSortMethod,
+    statusFilter,
+    setStatusFilter,
+    tagsFilter,
+    setTagsFilter,
   };
 
   var filteredList = todoList.filter((todo) =>

@@ -9,6 +9,7 @@ import AddTags from "./AddTags";
 import AddTodo from "./AddTodo";
 import SearchTodo from "./SearchTodo";
 import SortTodos from "./SortTodos";
+import FilterTodos from "./FilterTodos";
 
 const ActionPanel = ({ values }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -59,9 +60,12 @@ const ActionPanel = ({ values }) => {
           >
             <LuSearch />
           </IconButton>
-          <IconButton bgColor="transparent" color="blue.400">
-            <MdFilterListAlt />
-          </IconButton>
+          <FilterTodos
+            statusFilter={values.statusFilter}
+            setStatusFilter={values.setStatusFilter}
+            tagsFilter={values.tagsFilter}
+            setTagsFilter={values.setTagsFilter}
+          />
           <SortTodos
             sortMethod={values.sortMethod}
             setSortMethod={values.setSortMethod}

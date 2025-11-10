@@ -45,7 +45,8 @@ const AddTodoTags = ({ id, tags }) => {
                   <Menu.Item
                     key={tag}
                     cursor="pointer"
-                    _hover={{ bg: "#e9f7ffff" }}
+                    color="blue.400"
+                    _hover={{ bg: "#f0f9ffff" }}
                     onClick={() => handleAddTag(tag)}
                   >
                     {tag}

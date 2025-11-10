@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import { useTodo } from "@/contexts/TodoContext";
-import { GetCurrentDateString } from "@/utils/dateHelper";
+import { getCurrentDateString } from "@/utils/dateHelper";
 import EditTodo from "./EditTodo";
 import DeleteTodo from "./DeleteTodo";
 import AddTodoTags from "./AddTodoTags";
@@ -50,7 +50,7 @@ export default function TodoItem({ todo }) {
       </HStack>
       <Box mt="2" w="95%" textAlign="right">
         <Text fontSize="xs" color="blue.400">
-          <Em>{GetCurrentDateString(todo?.dateCreated)}</Em>
+          <Em>{getCurrentDateString(todo?.dateCreated)}</Em>
         </Text>
       </Box>
       <AddTodoTags id={todo.id} tags={todo.tags} />

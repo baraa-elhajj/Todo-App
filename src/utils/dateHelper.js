@@ -1,4 +1,4 @@
-export const GetCurrentDateString = (timestamp) => {
+export const getCurrentDateString = (timestamp) => {
   const date = new Date(timestamp);
   const dateOptions = {
     month: "short",

@@ -6,19 +6,25 @@ import { useTodo } from "@/contexts/TodoContext";
 import ClearTodoList from "./ClearTodoList";
 import TodoItem from "./TodoItem";
 import ActionPanel from "./ActionPanel";
+import { sortByMethod } from "@/utils/todoHelper";
 
 export default function TodoList() {
   const { todoList } = useTodo();
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortMethod, setSortMethod] = useState(0);
 
   const actionPanelValues = {
     searchTerm: searchTerm,
     setSearchTerm: setSearchTerm,
+    sortMethod: sortMethod,
+    setSortMethod: setSortMethod,
   };
 
-  const filteredList = todoList.filter((todo) =>
+  var filteredList = todoList.filter((todo) =>
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  filteredList = sortByMethod(sortMethod, filteredList);
 
   return (
     <>

@@ -4,10 +4,10 @@ import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { IoMdPricetags } from "react-icons/io";
 import { MdFilterList } from "react-icons/md";
 
-const SortTodos = () => {
+const SortTodos = ({ sortMethod, setSortMethod }) => {
   const sortOptions = [
     {
-      text: "Oldest to Neweset",
+      text: "Oldest to Newest",
       icon: <HiSortAscending />,
     },
     {
@@ -35,8 +35,10 @@ const SortTodos = () => {
             <Menu.Item
               key={index}
               cursor="pointer"
-              _hover={{ bg: "#e9f7ffff" }}
-              //   onClick={() => handleAddTag(tag)}
+              color="blue.400"
+              bg={index === sortMethod ? "#f0f9ffff" : "transparent"}
+              _hover={{ bg: "#f0f9ffff" }}
+              onClick={() => setSortMethod(index)}
             >
               <Group>
                 {option.icon}

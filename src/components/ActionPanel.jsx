@@ -62,7 +62,10 @@ const ActionPanel = ({ values }) => {
           <IconButton bgColor="transparent" color="blue.400">
             <MdFilterListAlt />
           </IconButton>
-          <SortTodos />
+          <SortTodos
+            sortMethod={values.sortMethod}
+            setSortMethod={values.setSortMethod}
+          />
           <IconButton
             bgColor="transparent"
             color="blue.400"

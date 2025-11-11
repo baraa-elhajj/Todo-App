@@ -37,6 +37,16 @@ export default function TodoList() {
       return todo.isCompleted === todoStatus;
     });
   }
+
+  if (tagsFilter.length !== 0) {
+    filteredList = filteredList.filter((todo) => {
+      for (let index = 0; index < tagsFilter.length; index++) {
+        if (!todo.tags.includes(tagsFilter[index])) return false;
+      }
+      return true;
+    });
+  }
+
   filteredList = sortByMethod(sortMethod, filteredList);
 
   return (

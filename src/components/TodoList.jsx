@@ -30,6 +30,13 @@ export default function TodoList() {
     todo.text.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  if (statusFilter !== "all") {
+    console.log("statusFilter: ", statusFilter);
+    const todoStatus = statusFilter === "completed" ? true : false;
+    filteredList = filteredList.filter((todo) => {
+      return todo.isCompleted === todoStatus;
+    });
+  }
   filteredList = sortByMethod(sortMethod, filteredList);
 
   return (

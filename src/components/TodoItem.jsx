@@ -48,12 +48,13 @@ export default function TodoItem({ todo }) {
           <DeleteTodo id={todo.id} />
         </Stack>
       </HStack>
+
+      <AddTodoTags id={todo.id} tags={todo.tags} />
       <Box mt="2" w="95%" textAlign="right">
         <Text fontSize="xs" color="blue.400">
           <Em>{getCurrentDateString(todo?.dateCreated)}</Em>
         </Text>
       </Box>
-      <AddTodoTags id={todo.id} tags={todo.tags} />
     </VStack>
   );
 }

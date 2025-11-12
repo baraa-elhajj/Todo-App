@@ -56,6 +56,7 @@ const ActionPanel = ({ values }) => {
           <IconButton
             bgColor="transparent"
             color="blue.400"
+            _hover={{ color: "blue.500" }}
             onClick={handleSearchBtnClicked}
           >
             <LuSearch />
@@ -73,6 +74,7 @@ const ActionPanel = ({ values }) => {
           <IconButton
             bgColor="transparent"
             color="blue.400"
+            _hover={{ color: "blue.500" }}
             transform="scaleX(-1)"
             onClick={handleAddTagsBtnClicked}
           >
@@ -81,6 +83,7 @@ const ActionPanel = ({ values }) => {
           <IconButton
             bgColor="transparent"
             color="blue.400"
+            _hover={{ color: "blue.500" }}
             onClick={handleAddTodoBtnClicked}
           >
             <FaPlus />

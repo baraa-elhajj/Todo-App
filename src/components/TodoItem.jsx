@@ -42,6 +42,7 @@ export default function TodoItem({ todo }) {
             bgColor="transparent"
             color={todo.isCompleted ? "green.400" : "blue.400"}
             onClick={toggleCompleted}
+            _hover={{ color: `${todo.isCompleted ? "green.500" : "blue.500"}` }}
           >
             {todo.isCompleted ? <FaCircleCheck /> : <FaRegCircleCheck />}
           </IconButton>

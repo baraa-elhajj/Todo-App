@@ -28,7 +28,14 @@ export default function ClearTodoList() {
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <Flex>
-            <Button color="white" bgColor="red.500" px="4" h="45" mt="4">
+            <Button
+              color="white"
+              bgColor="red.500"
+              px="4"
+              h="45"
+              mt="4"
+              _hover={{ bgColor: "red.600" }}
+            >
               Clear All
             </Button>
           </Flex>

@@ -60,6 +60,7 @@ export default function AddTodo() {
           type="submit"
           onClick={handleOnClick}
           disabled={loading}
+          _hover={{ bgColor: "blue.500" }}
         >
           {loading ? (
             <HStack gap={2} justify="center">

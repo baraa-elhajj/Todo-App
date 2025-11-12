@@ -20,6 +20,7 @@ const SortTodos = ({ sortMethod, setSortMethod }) => {
         <IconButton
           size="md"
           color="blue.400"
+          _hover={{ color: "blue.500" }}
           bgColor="transparent"
           _focus={{ outline: "none" }}
         >

@@ -88,7 +88,7 @@ export default function TodoList() {
           size="lg"
           color="blue.400"
         >
-          No more tasks! Add some ...
+          No tasks available!
         </Heading>
       )}
     </>

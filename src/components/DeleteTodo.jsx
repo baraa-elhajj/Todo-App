@@ -19,8 +19,11 @@ export default function DeleteTodo({ id }) {
   return (
     <IconButton
       rounded="full"
-      bgColor="transparent"
-      color="red.400"
+      // bgColor="transparent"
+      // color="red.400"
+      bgColor="red.400"
+      color="white"
+      _hover={{ bgColor: "red.500" }}
       onClick={handleDelete}
     >
       {loading ? <Spinner size="sm" /> : <FiTrash2 />}

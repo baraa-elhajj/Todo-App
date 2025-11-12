@@ -13,9 +13,9 @@ This project demonstrates clean state management, database integration, and a mo
 - Loading indicators for a smooth UX
 - Organized project structure with services and contexts
 
-### Note
+### Why disable Supabase?
 
-Why use Supabase? Since no login feature was implemented yet, the use of Supabase doesn't really make sense. It's just to desmostrate its usage and get used to it. If a login feature is impleted later, we can re-enable it.
+Since no login feature was implemented yet, the use of Supabase doesn't really make sense. It's just to desmostrate its usage and get used to it. If a login feature is impleted later, it can be enabled again.
 
 ## Tech Stack
 
@@ -59,7 +59,7 @@ npm run dev
 
 ## Preview
 
-<img src="public/screenshots/todoapp.png" />
+<img src="public/screenshots/todoapp.png" style="width: 70%"/>
 
 ---
 

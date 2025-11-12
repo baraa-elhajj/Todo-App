@@ -7,7 +7,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 import { useTodo } from "@/contexts/TodoContext";
 import { getCurrentDateString } from "@/utils/dateHelper";
 import EditTodo from "./EditTodo";
@@ -32,23 +32,27 @@ export default function TodoItem({ todo }) {
     >
       <HStack w="100%">
         <EditTodo todo={todo} />
-        <Stack
-          direction={{ base: "column", sm: "row" }}
-          spacing={2}
-          align="center"
-        >
+        <Stack direction={{ base: "column", sm: "row" }} align="center">
           <IconButton
             rounded="full"
-            bgColor="transparent"
-            color={todo.isCompleted ? "green.400" : "blue.400"}
+            // bgColor="transparent"
+            // color={todo.isCompleted ? "green.400" : "blue.400"}
+            bgColor={todo.isCompleted ? "green.400" : "blue.400"}
+            color="white"
+            _hover={{
+              bgColor: `${todo.isCompleted ? "green.500" : "blue.500"}`,
+            }}
             onClick={toggleCompleted}
           >
-            {todo.isCompleted ? <FaCircleCheck /> : <FaRegCircleCheck />}
+            {/* {todo.isCompleted ? <FaCircleCheck /> : <FaRegCircleCheck />} */}
+            <FaCheck />
           </IconButton>
+          <span></span>
           <DeleteTodo id={todo.id} />
         </Stack>
       </HStack>
-
+      <span></span>
+      <span></span>
       <AddTodoTags id={todo.id} tags={todo.tags} />
       <Box mt="2" w="95%" textAlign="right">
         <Text fontSize="xs" color="blue.400">

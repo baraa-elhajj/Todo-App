@@ -80,7 +80,7 @@ const FilterTodos = ({
                 </RadioGroup.Root>
               </Box>
 
-              <Box>
+              <Box w="85%" align="flex-start">
                 <Text
                   fontSize="sm"
                   fontWeight="semibold"

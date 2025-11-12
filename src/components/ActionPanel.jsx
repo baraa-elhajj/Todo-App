@@ -13,7 +13,7 @@ import FilterTodos from "./FilterTodos";
 
 const ActionPanel = ({ values }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isAddOpen, setIsAddOpen] = useState(true);
   const [isAddTagOpen, setIsAddTagOpen] = useState(false);
 
   const handleSearchBtnClicked = () => {

@@ -144,6 +144,9 @@ export function TodoProvider({ children }) {
 
   const deleteFromTagsList = (text) => {
     setTagsList((prev) => prev.filter((tag) => tag !== text));
+    todoList.forEach((todo) => {
+      deleteTag(todo.id, text);
+    });
   };
 
   const value = {
